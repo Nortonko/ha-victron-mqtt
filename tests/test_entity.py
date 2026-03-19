@@ -10,6 +10,7 @@ from victron_mqtt import (
     MetricNature,
     MetricType,
 )
+from victron_mqtt.constants import VictronEnum
 
 from homeassistant.components.sensor import SensorDeviceClass, SensorStateClass
 from custom_components.victron_mqtt.binary_sensor import VictronBinarySensor
@@ -173,3 +174,23 @@ async def test_translation_fields(
 
     assert sensor.translation_key == "phase_voltage"
     assert sensor.translation_placeholders == {"phase": "L1"}
+
+
+async def test_sensor_enum_value_is_normalized_for_state_translation(
+    hass: HomeAssistant, mock_device, base_metric
+) -> None:
+    """VictronEnum sensor values should map to enum codes for translations."""
+
+    class AirQuality(VictronEnum):
+        GOOD = (100, "Good")
+        SLIGHTLY_UNHEALTHY = (200, "Slightly unhealthy")
+
+    device_info: DeviceInfo = {"identifiers": {("victron_mqtt", "dev_1")}}
+    sensor = VictronSensor(
+        mock_device, base_metric, device_info, simple_naming=True, installation_id="x"
+    )
+
+    with patch.object(sensor, "async_write_ha_state") as mock_sched:
+        sensor._on_update_task(AirQuality.SLIGHTLY_UNHEALTHY)
+        assert sensor.native_value == 200
+        mock_sched.assert_called_once()

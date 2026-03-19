@@ -14,6 +14,7 @@ from victron_mqtt import (
     Metric as VictronVenusMetric,
     MetricKind,
 )
+from victron_mqtt.constants import VictronEnum
 
 from homeassistant.components.sensor import RestoreSensor, SensorStateClass
 from homeassistant.core import HomeAssistant, callback
@@ -80,10 +81,18 @@ class VictronSensor(VictronBaseEntity, RestoreSensor):
     def _on_update_task(self, value: Any) -> None:
         if self._baseline is not None:
             value += self._baseline
+        value = self._normalize_value(value)
         if self._attr_native_value == value:
             return
         self._attr_native_value = value
         self.async_write_ha_state()
+
+    @staticmethod
+    def _normalize_value(value: Any) -> Any:
+        """Normalize Victron enum values to their enum code."""
+        if isinstance(value, VictronEnum):
+            return value.code
+        return value
 
     async def async_added_to_hass(self) -> None:
         """Restore persistent state for FormulaMetric energy sensors."""
@@ -95,7 +104,7 @@ class VictronSensor(VictronBaseEntity, RestoreSensor):
             SensorStateClass.TOTAL_INCREASING,
             SensorStateClass.TOTAL,
         ] and isinstance(self._metric, VictronFormulaMetric)
-        self._attr_native_value = self._metric.value
+        self._attr_native_value = self._normalize_value(self._metric.value)
         if not should_restore:
             # Call parent to register update callbacks
             await super().async_added_to_hass()
