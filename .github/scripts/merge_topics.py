@@ -8,19 +8,30 @@ def main():
     print(f"topics_path={topics_path}")
     print(f"en_path={en_path}")
     with open(topics_path, encoding='utf-8') as f:
-        topics = json.load(f)
+        topics_data = json.load(f)
 
     with open(en_path, encoding='utf-8') as f:
         en = json.load(f)
 
+    # Build enum lookup: enum_name -> {lowercase_id: human_readable_name}
+    enum_lookup = {}
+    for enum_def in topics_data.get('enums', []):
+        enum_name = enum_def.get('name')
+        enum_values = {}
+        for ev in enum_def.get('EnumValues', []):
+            # Use lowercase id as key, name as value
+            enum_values[ev.get('id', '').lower()] = ev.get('name', '')
+        enum_lookup[enum_name] = enum_values
+
     # Update topics: add or update entries in en.json under entity.sensor for each topic id
     entity = {}
     count = 0
-    for topic in topics.get('topics', []):
+    for topic in topics_data.get('topics', []):
         translation_key = topic.get('short_id').replace('{', '').replace('}', '') # same as in common.py
         topic_name = topic.get('generic_name')
         message_type = topic.get('message_type')
         is_adjustable_suffix = topic.get('is_adjustable_suffix')
+        enum_name = topic.get('enum')
         
         # Extract the part after the dot and make it lower case
         if '.' in message_type:
@@ -32,30 +43,42 @@ def main():
         if entity_type == "service":
             continue
 
+        # Build entity entry with name and optional state for enums
+        entity_entry = {"name": topic_name}
+        if enum_name and enum_name in enum_lookup:
+            entity_entry["state"] = enum_lookup[enum_name]
+
         # Add to original entity type
         if entity_type not in entity:
             entity[entity_type] = {}
-        entity[entity_type][translation_key] = {"name": topic_name}
+        entity[entity_type][translation_key] = entity_entry
         count += 1
         
         # If is_adjustable_suffix is set, also add to sensor entity type
         if is_adjustable_suffix is not None and entity_type != 'sensor':
             if 'sensor' not in entity:
                 entity['sensor'] = {}
-            entity['sensor'][translation_key] = {"name": topic_name}
+            entity['sensor'][translation_key] = entity_entry
         # to support READ_ONLY we need everything in sensor and in binary_sensor
         if entity_type == 'switch':
             if 'binary_sensor' not in entity:
                 entity['binary_sensor'] = {}
-            entity['binary_sensor'][translation_key] = {"name": topic_name}
+            entity['binary_sensor'][translation_key] = entity_entry
         if entity_type in ['number', 'select']:
             if 'sensor' not in entity:
                 entity['sensor'] = {}
-            entity['sensor'][translation_key] = {"name": topic_name}
+            entity['sensor'][translation_key] = entity_entry
     # Sort the entity dictionary and its nested dictionaries
     sorted_entity = {}
     for entity_type in sorted(entity.keys()):
-        sorted_entity[entity_type] = dict(sorted(entity[entity_type].items()))
+        sorted_entity[entity_type] = {}
+        for translation_key in sorted(entity[entity_type].keys()):
+            entry = entity[entity_type][translation_key]
+            sorted_entry = {"name": entry["name"]}
+            if "state" in entry:
+                # Sort the state dictionary alphabetically by key
+                sorted_entry["state"] = dict(sorted(entry["state"].items()))
+            sorted_entity[entity_type][translation_key] = sorted_entry
     
     en['entity'] = sorted_entity
 
