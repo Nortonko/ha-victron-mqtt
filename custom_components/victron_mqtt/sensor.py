@@ -91,7 +91,7 @@ class VictronSensor(VictronBaseEntity, RestoreSensor):
     def _normalize_value(value: Any) -> Any:
         """Normalize Victron enum values to their enum code."""
         if isinstance(value, VictronEnum):
-            return value.code
+            return value.id
         return value
 
     async def async_added_to_hass(self) -> None:
