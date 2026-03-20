@@ -13,7 +13,7 @@ from victron_mqtt import (
 )
 
 from homeassistant.components.sensor import SensorDeviceClass, SensorStateClass
-from homeassistant.const import EntityCategory, UnitOfTime
+from homeassistant.const import EntityCategory
 from homeassistant.core import callback
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity import Entity
@@ -58,9 +58,6 @@ class VictronBaseEntity(Entity):
         if metric.metric_kind in [MetricKind.SENSOR, MetricKind.NUMBER]:
             self._attr_device_class = self._map_metric_to_device_class(metric)
             self._attr_state_class = self._map_metric_to_stateclass(metric)
-            self._attr_native_unit_of_measurement = (
-                self._map_metric_to_unit_of_measurement(metric)
-            )
 
         self._attr_entity_category = (
             EntityCategory.DIAGNOSTIC
@@ -144,14 +141,3 @@ class VictronBaseEntity(Entity):
             return SensorStateClass.MEASUREMENT
 
         return None
-
-    def _map_metric_to_unit_of_measurement(
-        self, metric: VictronVenusMetric
-    ) -> str | None:
-        if metric.unit_of_measurement == "s":
-            return UnitOfTime.SECONDS
-        if metric.unit_of_measurement == "min":
-            return UnitOfTime.MINUTES
-        if metric.unit_of_measurement == "h":
-            return UnitOfTime.HOURS
-        return metric.unit_of_measurement

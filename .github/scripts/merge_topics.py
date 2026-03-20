@@ -4,7 +4,8 @@ import os
 def main():
     base = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
     topics_path = os.path.join(base, 'victron_mqtt.json')
-    en_path = os.path.join(base, 'custom_components', 'victron_mqtt', 'translations', 'en.json')
+    translations_dir = os.path.join(base, 'custom_components', 'victron_mqtt', 'translations')
+    en_path = os.path.join(translations_dir, 'en.json')
     print(f"topics_path={topics_path}")
     print(f"en_path={en_path}")
     with open(topics_path, encoding='utf-8') as f:
@@ -29,6 +30,7 @@ def main():
     for topic in topics_data.get('topics', []):
         translation_key = topic.get('short_id').replace('{', '').replace('}', '') # same as in common.py
         topic_name = topic.get('generic_name')
+        topic_unit = topic.get('unit_of_measurement')
         message_type = topic.get('message_type')
         is_adjustable_suffix = topic.get('is_adjustable_suffix')
         enum_name = topic.get('enum')
@@ -45,6 +47,8 @@ def main():
 
         # Build entity entry with name and optional state for enums
         entity_entry = {"name": topic_name}
+        if topic_unit is not None:
+            entity_entry["unit_of_measurement"] = topic_unit
         if enum_name and enum_name in enum_lookup:
             entity_entry["state"] = enum_lookup[enum_name]
 
@@ -75,6 +79,8 @@ def main():
         for translation_key in sorted(entity[entity_type].keys()):
             entry = entity[entity_type][translation_key]
             sorted_entry = {"name": entry["name"]}
+            if "unit_of_measurement" in entry:
+                sorted_entry["unit_of_measurement"] = entry["unit_of_measurement"]
             if "state" in entry:
                 # Sort the state dictionary alphabetically by key
                 sorted_entry["state"] = dict(sorted(entry["state"].items()))
@@ -82,9 +88,55 @@ def main():
     
     en['entity'] = sorted_entity
 
+    # Build lookup of units from generated English entity translations
+    units_lookup = {}
+    for entity_type, entries in sorted_entity.items():
+        units_lookup[entity_type] = {}
+        for translation_key, entry in entries.items():
+            if 'unit_of_measurement' in entry:
+                units_lookup[entity_type][translation_key] = entry['unit_of_measurement']
+
     with open(en_path, 'w', encoding='utf-8') as f:
         json.dump(en, f, ensure_ascii=False, indent=2, sort_keys=True)
+
+    # Update non-English locales with unit_of_measurement values from en.json.
+    # Keep localized names and states intact by touching only existing entries.
+    updated_locales = 0
+    for file_name in os.listdir(translations_dir):
+        if not file_name.endswith('.json') or file_name == 'en.json':
+            continue
+
+        locale_path = os.path.join(translations_dir, file_name)
+        with open(locale_path, encoding='utf-8') as f:
+            locale_data = json.load(f)
+
+        locale_entity = locale_data.get('entity')
+        if not isinstance(locale_entity, dict):
+            continue
+
+        locale_changed = False
+        for entity_type, entity_units in units_lookup.items():
+            locale_entries = locale_entity.get(entity_type)
+            if not isinstance(locale_entries, dict):
+                continue
+
+            for translation_key, unit in entity_units.items():
+                locale_entry = locale_entries.get(translation_key)
+                if not isinstance(locale_entry, dict):
+                    continue
+                if locale_entry.get('unit_of_measurement') == unit:
+                    continue
+
+                locale_entry['unit_of_measurement'] = unit
+                locale_changed = True
+
+        if locale_changed:
+            with open(locale_path, 'w', encoding='utf-8') as f:
+                json.dump(locale_data, f, ensure_ascii=False, indent=2, sort_keys=True)
+            updated_locales += 1
+
     print(f"Updated {count} entities")
+    print(f"Updated units in {updated_locales} locale files")
 
 if __name__ == '__main__':
     main()

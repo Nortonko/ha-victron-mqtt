@@ -15,7 +15,6 @@ from victron_mqtt.constants import VictronEnum
 from homeassistant.components.sensor import SensorDeviceClass, SensorStateClass
 from custom_components.victron_mqtt.binary_sensor import VictronBinarySensor
 from custom_components.victron_mqtt.sensor import VictronSensor
-from homeassistant.const import UnitOfTime
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.device_registry import DeviceInfo
 
@@ -145,13 +144,8 @@ async def test_metric_mappings(hass: HomeAssistant, mock_device, base_metric) ->
     )
     assert sensor.state_class is None
 
-    # Unit of measurement mapping
-    for unit, expected in (
-        ("s", UnitOfTime.SECONDS),
-        ("min", UnitOfTime.MINUTES),
-        ("h", UnitOfTime.HOURS),
-        ("V", "V"),  # passthrough
-    ):
+    # Units are provided through translation files via translation_key.
+    for unit in ("s", "min", "h", "V"):
         base_metric.unit_of_measurement = unit
         sensor = VictronSensor(
             mock_device,
@@ -160,7 +154,7 @@ async def test_metric_mappings(hass: HomeAssistant, mock_device, base_metric) ->
             simple_naming=True,
             installation_id="x",
         )
-        assert sensor.native_unit_of_measurement == expected
+        assert sensor.native_unit_of_measurement is None
 
 
 async def test_translation_fields(
