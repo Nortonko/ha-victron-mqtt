@@ -180,8 +180,8 @@ async def test_sensor_enum_value_is_normalized_for_state_translation(
     """VictronEnum sensor values should map to enum codes for translations."""
 
     class AirQuality(VictronEnum):
-        GOOD = (100, "Good")
-        SLIGHTLY_UNHEALTHY = (200, "Slightly unhealthy")
+        GOOD = (100, "good", "Good")
+        SLIGHTLY_UNHEALTHY = (200, "slightly_unhealthy", "Slightly unhealthy")
 
     device_info: DeviceInfo = {"identifiers": {("victron_mqtt", "dev_1")}}
     sensor = VictronSensor(
@@ -190,5 +190,5 @@ async def test_sensor_enum_value_is_normalized_for_state_translation(
 
     with patch.object(sensor, "async_write_ha_state") as mock_sched:
         sensor._on_update_task(AirQuality.SLIGHTLY_UNHEALTHY)
-        assert sensor.native_value == 200
+        assert sensor.native_value == "slightly_unhealthy"
         mock_sched.assert_called_once()
