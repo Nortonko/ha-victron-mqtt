@@ -24,6 +24,23 @@ def main():
             enum_values[ev.get('id', '').lower()] = ev.get('name', '')
         enum_lookup[enum_name] = enum_values
 
+    # MetricTypes that map to a SensorDeviceClass in entity.py.
+    # These get native_unit_of_measurement set in code, so the translation
+    # file must NOT carry unit_of_measurement for them.
+    DEVICE_CLASS_METRIC_TYPES = {
+        'MetricType.POWER',
+        'MetricType.APPARENT_POWER',
+        'MetricType.ENERGY',
+        'MetricType.VOLTAGE',
+        'MetricType.CURRENT',
+        'MetricType.FREQUENCY',
+        'MetricType.ELECTRIC_STORAGE_PERCENTAGE',
+        'MetricType.TEMPERATURE',
+        'MetricType.SPEED',
+        'MetricType.LIQUID_VOLUME',
+        'MetricType.DURATION',
+    }
+
     # Update topics: add or update entries in en.json under entity.sensor for each topic id
     entity = {}
     count = 0
@@ -31,6 +48,7 @@ def main():
         translation_key = topic.get('short_id').replace('{', '').replace('}', '') # same as in common.py
         topic_name = topic.get('generic_name')
         topic_unit = topic.get('unit_of_measurement')
+        topic_metric_type = topic.get('metric_type')
         message_type = topic.get('message_type')
         is_adjustable_suffix = topic.get('is_adjustable_suffix')
         enum_name = topic.get('enum')
@@ -45,9 +63,12 @@ def main():
         if entity_type == "service":
             continue
 
-        # Build entity entry with name and optional state for enums
+        # Build entity entry with name and optional state for enums.
+        # Only include unit_of_measurement in the translation when the metric
+        # does NOT have a device_class (those get native_unit in code instead).
         entity_entry = {"name": topic_name}
-        if topic_unit is not None:
+        has_device_class = topic_metric_type in DEVICE_CLASS_METRIC_TYPES
+        if topic_unit is not None and not has_device_class:
             entity_entry["unit_of_measurement"] = topic_unit
         if enum_name and enum_name in enum_lookup:
             entity_entry["state"] = enum_lookup[enum_name]

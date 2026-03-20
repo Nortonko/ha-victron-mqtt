@@ -58,6 +58,11 @@ class VictronBaseEntity(Entity):
         if metric.metric_kind in [MetricKind.SENSOR, MetricKind.NUMBER]:
             self._attr_device_class = self._map_metric_to_device_class(metric)
             self._attr_state_class = self._map_metric_to_stateclass(metric)
+            # Only set native_unit_of_measurement when a device_class is present.
+            # Entities without a device_class get their display unit from
+            # the translation files instead (set by merge_topics.py).
+            if self._attr_device_class is not None:
+                self._attr_native_unit_of_measurement = metric.unit_of_measurement
 
         self._attr_entity_category = (
             EntityCategory.DIAGNOSTIC

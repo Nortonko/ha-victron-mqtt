@@ -323,100 +323,76 @@
     },
     "number": {
       "alternator_charge_current_limit": {
-        "name": "Charge current limit",
-        "unit_of_measurement": "A"
+        "name": "Charge current limit"
       },
       "evcharger_set_current": {
-        "name": "Set current",
-        "unit_of_measurement": "A"
+        "name": "Set current"
       },
       "generator_gen_id_cool_down_timer": {
-        "name": "Generator cooldown timer",
-        "unit_of_measurement": "s"
+        "name": "Generator cooldown timer"
       },
       "generator_gen_id_qh_start_on_soc": {
-        "name": "Generator QH start on SOC",
-        "unit_of_measurement": "%"
+        "name": "Generator QH start on SOC"
       },
       "generator_gen_id_qh_start_on_voltage": {
-        "name": "Generator QH start on voltage",
-        "unit_of_measurement": "V"
+        "name": "Generator QH start on voltage"
       },
       "generator_gen_id_qh_stop_on_soc": {
-        "name": "Generator QH stop on SOC",
-        "unit_of_measurement": "%"
+        "name": "Generator QH stop on SOC"
       },
       "generator_gen_id_qh_stop_on_voltage": {
-        "name": "Generator QH stop on voltage",
-        "unit_of_measurement": "V"
+        "name": "Generator QH stop on voltage"
       },
       "generator_gen_id_service_interval": {
-        "name": "Generator service interval",
-        "unit_of_measurement": "h"
+        "name": "Generator service interval"
       },
       "generator_gen_id_shut_down_timer": {
-        "name": "Generator shutdown timer",
-        "unit_of_measurement": "s"
+        "name": "Generator shutdown timer"
       },
       "generator_gen_id_start_on_soc": {
-        "name": "Generator start on SOC",
-        "unit_of_measurement": "%"
+        "name": "Generator start on SOC"
       },
       "generator_gen_id_start_on_soc_timer": {
-        "name": "Generator start on SOC timer",
-        "unit_of_measurement": "s"
+        "name": "Generator start on SOC timer"
       },
       "generator_gen_id_start_on_temp_timer": {
-        "name": "Generator start on temp timer",
-        "unit_of_measurement": "s"
+        "name": "Generator start on temp timer"
       },
       "generator_gen_id_start_on_voltage": {
-        "name": "Generator start on voltage",
-        "unit_of_measurement": "V"
+        "name": "Generator start on voltage"
       },
       "generator_gen_id_start_on_voltage_timer": {
-        "name": "Generator start on voltage timer",
-        "unit_of_measurement": "s"
+        "name": "Generator start on voltage timer"
       },
       "generator_gen_id_stop_on_soc": {
-        "name": "Generator stop on SOC",
-        "unit_of_measurement": "%"
+        "name": "Generator stop on SOC"
       },
       "generator_gen_id_stop_on_soc_timer": {
-        "name": "Generator stop on SOC timer",
-        "unit_of_measurement": "s"
+        "name": "Generator stop on SOC timer"
       },
       "generator_gen_id_stop_on_temp_timer": {
-        "name": "Generator stop on temp timer",
-        "unit_of_measurement": "s"
+        "name": "Generator stop on temp timer"
       },
       "generator_gen_id_stop_on_voltage": {
-        "name": "Generator stop on voltage",
-        "unit_of_measurement": "V"
+        "name": "Generator stop on voltage"
       },
       "generator_gen_id_stop_on_voltage_timer": {
-        "name": "Generator stop on voltage timer",
-        "unit_of_measurement": "s"
+        "name": "Generator stop on voltage timer"
       },
       "generator_gen_id_warm_up_timer": {
-        "name": "Generator warm-up timer",
-        "unit_of_measurement": "s"
+        "name": "Generator warm-up timer"
       },
       "hub4_ac_grid_setpoint": {
-        "name": "AC grid setpoint",
-        "unit_of_measurement": "W"
+        "name": "AC grid setpoint"
       },
       "multi_ess_ac_power_setpoint": {
-        "name": "ESS AC power setpoint",
-        "unit_of_measurement": "W"
+        "name": "ESS AC power setpoint"
       },
       "multi_ess_min_soc_limit": {
-        "name": "ESS minimum SOC limit",
-        "unit_of_measurement": "%"
+        "name": "ESS minimum SOC limit"
       },
       "multi_shore_current_limit": {
-        "name": "Shore current limit",
-        "unit_of_measurement": "A"
+        "name": "Shore current limit"
       },
       "multiplus_assist_current_boost_factor": {
         "name": "Assist current boost factor",
@@ -427,64 +403,50 @@
         "unit_of_measurement": "%"
       },
       "system_ac_export_limit": {
-        "name": "AC export limit",
-        "unit_of_measurement": "A"
+        "name": "AC export limit"
       },
       "system_ac_input_limit": {
-        "name": "AC input limit",
-        "unit_of_measurement": "A"
+        "name": "AC input limit"
       },
       "system_ac_power_set_point": {
-        "name": "AC power setpoint",
-        "unit_of_measurement": "W"
+        "name": "AC power setpoint"
       },
       "system_ess_max_charge_current": {
-        "name": "ESS max charge current",
-        "unit_of_measurement": "A"
+        "name": "ESS max charge current"
       },
       "system_ess_max_charge_voltage": {
-        "name": "ESS max charge voltage",
-        "unit_of_measurement": "V"
+        "name": "ESS max charge voltage"
       },
       "system_ess_max_feed_in_power": {
-        "name": "ESS max feed-in power",
-        "unit_of_measurement": "W"
+        "name": "ESS max feed-in power"
       },
       "system_ess_max_inverter_power_limit": {
-        "name": "ESS max inverter power limit",
-        "unit_of_measurement": "W"
+        "name": "ESS max inverter power limit"
       },
       "system_ess_min_soc_limit": {
-        "name": "ESS min SOC limit",
-        "unit_of_measurement": "%"
+        "name": "ESS min SOC limit"
       },
       "system_ess_schedule_charge_slot_duration": {
-        "name": "ESS BatteryLife schedule charge {slot} duration",
-        "unit_of_measurement": "min"
+        "name": "ESS BatteryLife schedule charge {slot} duration"
       },
       "system_ess_schedule_charge_slot_soc": {
-        "name": "ESS BatteryLife schedule charge {slot} SOC",
-        "unit_of_measurement": "%"
+        "name": "ESS BatteryLife schedule charge {slot} SOC"
       },
       "temperature_offset": {
-        "name": "Offset",
-        "unit_of_measurement": "°C"
+        "name": "Offset"
       },
       "temperature_scale": {
         "name": "Scale factor",
         "unit_of_measurement": "factor"
       },
       "transfer_switch_generator_current_limit": {
-        "name": "Generator AC current limit",
-        "unit_of_measurement": "A"
+        "name": "Generator AC current limit"
       },
       "vebus_ac_power_setpoint_phase": {
-        "name": "AC power setpoint {phase}",
-        "unit_of_measurement": "W"
+        "name": "AC power setpoint {phase}"
       },
       "vebus_inverter_current_limit": {
-        "name": "Current limit",
-        "unit_of_measurement": "A"
+        "name": "Current limit"
       }
     },
     "select": {
@@ -586,40 +548,31 @@
     },
     "sensor": {
       "acload_current": {
-        "name": "Load current",
-        "unit_of_measurement": "A"
+        "name": "Load current"
       },
       "acload_current_phase": {
-        "name": "Current on {phase}",
-        "unit_of_measurement": "A"
+        "name": "Current on {phase}"
       },
       "acload_energy_forward": {
-        "name": "Consumption",
-        "unit_of_measurement": "kWh"
+        "name": "Consumption"
       },
       "acload_energy_forward_phase": {
-        "name": "Consumption on {phase}",
-        "unit_of_measurement": "kWh"
+        "name": "Consumption on {phase}"
       },
       "acload_frequency": {
-        "name": "Frequency",
-        "unit_of_measurement": "Hz"
+        "name": "Frequency"
       },
       "acload_power": {
-        "name": "Power",
-        "unit_of_measurement": "W"
+        "name": "Power"
       },
       "acload_power_phase": {
-        "name": "Power on {phase}",
-        "unit_of_measurement": "W"
+        "name": "Power on {phase}"
       },
       "acload_voltage": {
-        "name": "Voltage",
-        "unit_of_measurement": "V"
+        "name": "Voltage"
       },
       "acload_voltage_phase": {
-        "name": "Voltage on {phase}",
-        "unit_of_measurement": "V"
+        "name": "Voltage on {phase}"
       },
       "acsystem_mode": {
         "name": "Mode",
@@ -632,32 +585,25 @@
         }
       },
       "alternator_charge_current_limit": {
-        "name": "Charge current limit",
-        "unit_of_measurement": "A"
+        "name": "Charge current limit"
       },
       "alternator_dc_current": {
-        "name": "DC output current",
-        "unit_of_measurement": "A"
+        "name": "DC output current"
       },
       "alternator_dc_power": {
-        "name": "DC output power",
-        "unit_of_measurement": "W"
+        "name": "DC output power"
       },
       "alternator_dc_voltage": {
-        "name": "DC output voltage",
-        "unit_of_measurement": "V"
+        "name": "DC output voltage"
       },
       "alternator_input_current": {
-        "name": "Input current",
-        "unit_of_measurement": "A"
+        "name": "Input current"
       },
       "alternator_input_power": {
-        "name": "Input power",
-        "unit_of_measurement": "W"
+        "name": "Input power"
       },
       "alternator_input_voltage": {
-        "name": "Input voltage",
-        "unit_of_measurement": "V"
+        "name": "Input voltage"
       },
       "alternator_state": {
         "name": "State",
@@ -687,24 +633,21 @@
         }
       },
       "auxiliary_battery_voltage": {
-        "name": "Auxiliary battery voltage",
-        "unit_of_measurement": "V"
+        "name": "Auxiliary battery voltage"
       },
       "battery_automatic_syncs": {
         "name": "Automatic syncs",
         "unit_of_measurement": "syncs"
       },
       "battery_average_discharge": {
-        "name": "Average discharge",
-        "unit_of_measurement": "kWh"
+        "name": "Average discharge"
       },
       "battery_capacity": {
         "name": "Capacity",
         "unit_of_measurement": "Ah"
       },
       "battery_cell_cell_id_voltage": {
-        "name": "Cell {cell_id} voltage",
-        "unit_of_measurement": "V"
+        "name": "Cell {cell_id} voltage"
       },
       "battery_cell_imbalance": {
         "name": "Cell imbalance",
@@ -715,12 +658,10 @@
         }
       },
       "battery_cell_voltage_deviation": {
-        "name": "Cell voltage deviation",
-        "unit_of_measurement": "V"
+        "name": "Cell voltage deviation"
       },
       "battery_charged_energy": {
-        "name": "Charged energy",
-        "unit_of_measurement": "kWh"
+        "name": "Charged energy"
       },
       "battery_consumed_amphours": {
         "name": "Consumed amp-hours",
@@ -731,16 +672,13 @@
         "unit_of_measurement": "Ah"
       },
       "battery_current": {
-        "name": "DC bus current",
-        "unit_of_measurement": "A"
+        "name": "DC bus current"
       },
       "battery_deepest_discharge": {
-        "name": "Deepest discharge",
-        "unit_of_measurement": "kWh"
+        "name": "Deepest discharge"
       },
       "battery_discharged_energy": {
-        "name": "Discharged energy",
-        "unit_of_measurement": "kWh"
+        "name": "Discharged energy"
       },
       "battery_high_charge_current": {
         "name": "High charge current",
@@ -779,8 +717,7 @@
         }
       },
       "battery_last_discharge": {
-        "name": "Last discharge",
-        "unit_of_measurement": "kWh"
+        "name": "Last discharge"
       },
       "battery_low_cell_voltage": {
         "name": "Low cell voltage",
@@ -799,24 +736,19 @@
         }
       },
       "battery_max_cell_temperature": {
-        "name": "Maximum cell temperature",
-        "unit_of_measurement": "°C"
+        "name": "Maximum cell temperature"
       },
       "battery_max_cell_voltage": {
-        "name": "Maximum cell voltage",
-        "unit_of_measurement": "V"
+        "name": "Maximum cell voltage"
       },
       "battery_max_charge_current": {
-        "name": "Maximum allowed charge current",
-        "unit_of_measurement": "A"
+        "name": "Maximum allowed charge current"
       },
       "battery_max_charge_voltage": {
-        "name": "Maximum allowed charging voltage",
-        "unit_of_measurement": "V"
+        "name": "Maximum allowed charging voltage"
       },
       "battery_max_discharge_current": {
-        "name": "Maximum allowed discharge current",
-        "unit_of_measurement": "A"
+        "name": "Maximum allowed discharge current"
       },
       "battery_max_temperature_cell_id": {
         "name": "Maximum temperature cell ID"
@@ -825,24 +757,20 @@
         "name": "Maximum voltage cell ID"
       },
       "battery_maximum_voltage": {
-        "name": "Maximum voltage",
-        "unit_of_measurement": "V"
+        "name": "Maximum voltage"
       },
       "battery_mid_voltage": {
-        "name": "DC bus mid voltage",
-        "unit_of_measurement": "V"
+        "name": "DC bus mid voltage"
       },
       "battery_mid_voltage_deviation": {
         "name": "DC bus mid voltage deviation",
         "unit_of_measurement": "%"
       },
       "battery_min_cell_temperature": {
-        "name": "Minimum cell temperature",
-        "unit_of_measurement": "°C"
+        "name": "Minimum cell temperature"
       },
       "battery_min_cell_voltage": {
-        "name": "Minimum cell voltage",
-        "unit_of_measurement": "V"
+        "name": "Minimum cell voltage"
       },
       "battery_min_temperature_cell_id": {
         "name": "Minimum temperature cell ID"
@@ -851,8 +779,7 @@
         "name": "Minimum voltage cell ID"
       },
       "battery_minimum_voltage": {
-        "name": "Minimum voltage",
-        "unit_of_measurement": "V"
+        "name": "Minimum voltage"
       },
       "battery_nr_modules_blocking_charge": {
         "name": "Number of modules blocking charge",
@@ -871,47 +798,40 @@
         "unit_of_measurement": "modules"
       },
       "battery_power": {
-        "name": "Power",
-        "unit_of_measurement": "W"
+        "name": "Power"
       },
       "battery_soc": {
-        "name": "Charge",
-        "unit_of_measurement": "%"
+        "name": "Charge"
       },
       "battery_soh": {
         "name": "State of health",
         "unit_of_measurement": "%"
       },
       "battery_temperature": {
-        "name": "Temperature",
-        "unit_of_measurement": "°C"
+        "name": "Temperature"
       },
       "battery_time_since_last_full_charge": {
         "name": "Time since last full charge",
         "unit_of_measurement": "seconds"
       },
       "battery_time_to_go": {
-        "name": "Time to go",
-        "unit_of_measurement": "s"
+        "name": "Time to go"
       },
       "battery_total_charge_cycles": {
         "name": "Total charge cycles",
         "unit_of_measurement": "cycles"
       },
       "battery_voltage": {
-        "name": "DC bus voltage",
-        "unit_of_measurement": "V"
+        "name": "DC bus voltage"
       },
       "charge_mode": {
         "name": "Charge mode"
       },
       "charger_dc_current": {
-        "name": "DC output current",
-        "unit_of_measurement": "A"
+        "name": "DC output current"
       },
       "charger_dc_voltage": {
-        "name": "DC output voltage",
-        "unit_of_measurement": "V"
+        "name": "DC output voltage"
       },
       "charger_error_code": {
         "name": "Error code",
@@ -970,32 +890,25 @@
         }
       },
       "dcload_current": {
-        "name": "Current",
-        "unit_of_measurement": "A"
+        "name": "Current"
       },
       "dcload_power": {
-        "name": "Power",
-        "unit_of_measurement": "W"
+        "name": "Power"
       },
       "dcload_voltage": {
-        "name": "Voltage",
-        "unit_of_measurement": "V"
+        "name": "Voltage"
       },
       "dcsystem_aux_voltage": {
-        "name": "Auxiliary voltage",
-        "unit_of_measurement": "V"
+        "name": "Auxiliary voltage"
       },
       "dcsystem_current": {
-        "name": "Current",
-        "unit_of_measurement": "A"
+        "name": "Current"
       },
       "dcsystem_power": {
-        "name": "Power",
-        "unit_of_measurement": "W"
+        "name": "Power"
       },
       "dcsystem_voltage": {
-        "name": "Voltage",
-        "unit_of_measurement": "V"
+        "name": "Voltage"
       },
       "digitalinput_alarm": {
         "name": "Alarm",
@@ -1046,16 +959,13 @@
         }
       },
       "evcharger_current": {
-        "name": "Current",
-        "unit_of_measurement": "A"
+        "name": "Current"
       },
       "evcharger_max_set_current": {
-        "name": "Maximum set current",
-        "unit_of_measurement": "A"
+        "name": "Maximum set current"
       },
       "evcharger_min_set_current": {
-        "name": "Minimum set current",
-        "unit_of_measurement": "A"
+        "name": "Minimum set current"
       },
       "evcharger_mode": {
         "name": "Mode",
@@ -1073,28 +983,23 @@
         }
       },
       "evcharger_power": {
-        "name": "Power",
-        "unit_of_measurement": "W"
+        "name": "Power"
       },
       "evcharger_power_phase": {
-        "name": "Power {phase}",
-        "unit_of_measurement": "W"
+        "name": "Power {phase}"
       },
       "evcharger_session_cost": {
         "name": "Last session cost",
         "unit_of_measurement": "$"
       },
       "evcharger_session_energy": {
-        "name": "Last session energy",
-        "unit_of_measurement": "kWh"
+        "name": "Last session energy"
       },
       "evcharger_session_time": {
-        "name": "Last session time",
-        "unit_of_measurement": "min"
+        "name": "Last session time"
       },
       "evcharger_set_current": {
-        "name": "Set current",
-        "unit_of_measurement": "A"
+        "name": "Set current"
       },
       "evcharger_status": {
         "name": "Status",
@@ -1126,80 +1031,61 @@
         }
       },
       "evcharger_total_energy": {
-        "name": "Total energy",
-        "unit_of_measurement": "kWh"
+        "name": "Total energy"
       },
       "generator_gen_id_cool_down_timer": {
-        "name": "Generator cooldown timer",
-        "unit_of_measurement": "s"
+        "name": "Generator cooldown timer"
       },
       "generator_gen_id_qh_start_on_soc": {
-        "name": "Generator QH start on SOC",
-        "unit_of_measurement": "%"
+        "name": "Generator QH start on SOC"
       },
       "generator_gen_id_qh_start_on_voltage": {
-        "name": "Generator QH start on voltage",
-        "unit_of_measurement": "V"
+        "name": "Generator QH start on voltage"
       },
       "generator_gen_id_qh_stop_on_soc": {
-        "name": "Generator QH stop on SOC",
-        "unit_of_measurement": "%"
+        "name": "Generator QH stop on SOC"
       },
       "generator_gen_id_qh_stop_on_voltage": {
-        "name": "Generator QH stop on voltage",
-        "unit_of_measurement": "V"
+        "name": "Generator QH stop on voltage"
       },
       "generator_gen_id_service_interval": {
-        "name": "Generator service interval",
-        "unit_of_measurement": "h"
+        "name": "Generator service interval"
       },
       "generator_gen_id_shut_down_timer": {
-        "name": "Generator shutdown timer",
-        "unit_of_measurement": "s"
+        "name": "Generator shutdown timer"
       },
       "generator_gen_id_start_on_soc": {
-        "name": "Generator start on SOC",
-        "unit_of_measurement": "%"
+        "name": "Generator start on SOC"
       },
       "generator_gen_id_start_on_soc_timer": {
-        "name": "Generator start on SOC timer",
-        "unit_of_measurement": "s"
+        "name": "Generator start on SOC timer"
       },
       "generator_gen_id_start_on_temp_timer": {
-        "name": "Generator start on temp timer",
-        "unit_of_measurement": "s"
+        "name": "Generator start on temp timer"
       },
       "generator_gen_id_start_on_voltage": {
-        "name": "Generator start on voltage",
-        "unit_of_measurement": "V"
+        "name": "Generator start on voltage"
       },
       "generator_gen_id_start_on_voltage_timer": {
-        "name": "Generator start on voltage timer",
-        "unit_of_measurement": "s"
+        "name": "Generator start on voltage timer"
       },
       "generator_gen_id_stop_on_soc": {
-        "name": "Generator stop on SOC",
-        "unit_of_measurement": "%"
+        "name": "Generator stop on SOC"
       },
       "generator_gen_id_stop_on_soc_timer": {
-        "name": "Generator stop on SOC timer",
-        "unit_of_measurement": "s"
+        "name": "Generator stop on SOC timer"
       },
       "generator_gen_id_stop_on_temp_timer": {
-        "name": "Generator stop on temp timer",
-        "unit_of_measurement": "s"
+        "name": "Generator stop on temp timer"
       },
       "generator_gen_id_stop_on_voltage": {
-        "name": "Generator stop on voltage",
-        "unit_of_measurement": "V"
+        "name": "Generator stop on voltage"
       },
       "generator_gen_id_stop_on_voltage_timer": {
-        "name": "Generator stop on voltage timer",
-        "unit_of_measurement": "s"
+        "name": "Generator stop on voltage timer"
       },
       "generator_gen_id_warm_up_timer": {
-        "name": "Generator warm-up timer",
-        "unit_of_measurement": "s"
+        "name": "Generator warm-up timer"
       },
       "generator_run_state": {
         "name": "Run state",
@@ -1218,16 +1104,13 @@
         }
       },
       "generator_service_counter": {
-        "name": "Service counter",
-        "unit_of_measurement": "h"
+        "name": "Service counter"
       },
       "generator_today_runtime": {
-        "name": "Today runtime",
-        "unit_of_measurement": "h"
+        "name": "Today runtime"
       },
       "generator_total_runtime": {
-        "name": "Total runtime",
-        "unit_of_measurement": "h"
+        "name": "Total runtime"
       },
       "gps_altitude": {
         "name": "Altitude",
@@ -1250,44 +1133,34 @@
         "unit_of_measurement": "satellites"
       },
       "gps_speed": {
-        "name": "Speed",
-        "unit_of_measurement": "m/s"
+        "name": "Speed"
       },
       "grid_current": {
-        "name": "Current",
-        "unit_of_measurement": "A"
+        "name": "Current"
       },
       "grid_current_n": {
-        "name": "Current on N",
-        "unit_of_measurement": "A"
+        "name": "Current on N"
       },
       "grid_current_phase": {
-        "name": "Current on {phase}",
-        "unit_of_measurement": "A"
+        "name": "Current on {phase}"
       },
       "grid_energy_forward": {
-        "name": "Consumption",
-        "unit_of_measurement": "kWh"
+        "name": "Consumption"
       },
       "grid_energy_forward_phase": {
-        "name": "Grid consumption on {phase}",
-        "unit_of_measurement": "kWh"
+        "name": "Grid consumption on {phase}"
       },
       "grid_energy_reverse": {
-        "name": "Feed-in",
-        "unit_of_measurement": "kWh"
+        "name": "Feed-in"
       },
       "grid_energy_reverse_phase": {
-        "name": "Feed-in on {phase}",
-        "unit_of_measurement": "kWh"
+        "name": "Feed-in on {phase}"
       },
       "grid_frequency": {
-        "name": "Frequency",
-        "unit_of_measurement": "Hz"
+        "name": "Frequency"
       },
       "grid_power": {
-        "name": "Power",
-        "unit_of_measurement": "W"
+        "name": "Power"
       },
       "grid_power_factor": {
         "name": "Power factor",
@@ -1298,64 +1171,49 @@
         "unit_of_measurement": "factor"
       },
       "grid_power_phase": {
-        "name": "Power on {phase}",
-        "unit_of_measurement": "W"
+        "name": "Power on {phase}"
       },
       "grid_voltage": {
-        "name": "Voltage",
-        "unit_of_measurement": "V"
+        "name": "Voltage"
       },
       "grid_voltage_pen": {
-        "name": "Voltage on PEN",
-        "unit_of_measurement": "V"
+        "name": "Voltage on PEN"
       },
       "grid_voltage_phase": {
-        "name": "Voltage on {phase}",
-        "unit_of_measurement": "V"
+        "name": "Voltage on {phase}"
       },
       "grid_voltage_phase_next_phase": {
-        "name": "Voltage {phase} to {next_phase}",
-        "unit_of_measurement": "V"
+        "name": "Voltage {phase} to {next_phase}"
       },
       "heatpump_current": {
-        "name": "Current",
-        "unit_of_measurement": "A"
+        "name": "Current"
       },
       "heatpump_current_phase": {
-        "name": "Current on {phase}",
-        "unit_of_measurement": "A"
+        "name": "Current on {phase}"
       },
       "heatpump_energy_forward": {
-        "name": "Consumption",
-        "unit_of_measurement": "kWh"
+        "name": "Consumption"
       },
       "heatpump_energy_forward_phase": {
-        "name": "Consumption on {phase}",
-        "unit_of_measurement": "kWh"
+        "name": "Consumption on {phase}"
       },
       "heatpump_frequency": {
-        "name": "Frequency",
-        "unit_of_measurement": "Hz"
+        "name": "Frequency"
       },
       "heatpump_power": {
-        "name": "Power",
-        "unit_of_measurement": "W"
+        "name": "Power"
       },
       "heatpump_power_phase": {
-        "name": "Power on {phase}",
-        "unit_of_measurement": "W"
+        "name": "Power on {phase}"
       },
       "heatpump_voltage": {
-        "name": "Voltage",
-        "unit_of_measurement": "V"
+        "name": "Voltage"
       },
       "heatpump_voltage_phase": {
-        "name": "Voltage on {phase}",
-        "unit_of_measurement": "V"
+        "name": "Voltage on {phase}"
       },
       "hub4_ac_grid_setpoint": {
-        "name": "AC grid setpoint",
-        "unit_of_measurement": "W"
+        "name": "AC grid setpoint"
       },
       "inverter_mode": {
         "name": "Mode",
@@ -1366,28 +1224,22 @@
         }
       },
       "inverter_output_apparent_power_phase": {
-        "name": "Output apparent power {phase}",
-        "unit_of_measurement": "VA"
+        "name": "Output apparent power {phase}"
       },
       "inverter_output_current_phase": {
-        "name": "Output current {phase}",
-        "unit_of_measurement": "A"
+        "name": "Output current {phase}"
       },
       "inverter_output_power_phase": {
-        "name": "Output power {phase}",
-        "unit_of_measurement": "W"
+        "name": "Output power {phase}"
       },
       "inverter_output_voltage_phase": {
-        "name": "Output voltage {phase}",
-        "unit_of_measurement": "V"
+        "name": "Output voltage {phase}"
       },
       "inverter_pv_power_total": {
-        "name": "PV power total",
-        "unit_of_measurement": "W"
+        "name": "PV power total"
       },
       "inverter_pv_voltage": {
-        "name": "PV bus voltage",
-        "unit_of_measurement": "V"
+        "name": "PV bus voltage"
       },
       "inverter_state": {
         "name": "State",
@@ -1417,52 +1269,40 @@
         }
       },
       "inverter_total_pv_yield_system": {
-        "name": "Total PV yield system",
-        "unit_of_measurement": "kWh"
+        "name": "Total PV yield system"
       },
       "inverter_total_pv_yield_user": {
-        "name": "Total PV yield user",
-        "unit_of_measurement": "kWh"
+        "name": "Total PV yield user"
       },
       "multi_acin1_to_acout": {
-        "name": "AC-in-1 to AC-out",
-        "unit_of_measurement": "kWh"
+        "name": "AC-in-1 to AC-out"
       },
       "multi_acin1_to_inverter": {
-        "name": "AC-in-1 to inverter",
-        "unit_of_measurement": "kWh"
+        "name": "AC-in-1 to inverter"
       },
       "multi_acin_current_phase": {
-        "name": "Current {phase}",
-        "unit_of_measurement": "A"
+        "name": "Current {phase}"
       },
       "multi_acin_power_phase": {
-        "name": "Power on {phase}",
-        "unit_of_measurement": "W"
+        "name": "Power on {phase}"
       },
       "multi_acin_voltage_phase": {
-        "name": "Voltage on {phase}",
-        "unit_of_measurement": "V"
+        "name": "Voltage on {phase}"
       },
       "multi_acout_output_current_phase": {
-        "name": "AC-out-{output} current on {phase}",
-        "unit_of_measurement": "A"
+        "name": "AC-out-{output} current on {phase}"
       },
       "multi_acout_output_power_phase": {
-        "name": "AC-out-{output} power on {phase}",
-        "unit_of_measurement": "W"
+        "name": "AC-out-{output} power on {phase}"
       },
       "multi_acout_output_voltage_phase": {
-        "name": "AC-out-{output} voltage on {phase}",
-        "unit_of_measurement": "V"
+        "name": "AC-out-{output} voltage on {phase}"
       },
       "multi_acout_to_acin1": {
-        "name": "AC-out to AC-in-1",
-        "unit_of_measurement": "kWh"
+        "name": "AC-out to AC-in-1"
       },
       "multi_acout_to_inverter": {
-        "name": "AC-out to inverter",
-        "unit_of_measurement": "kWh"
+        "name": "AC-out to inverter"
       },
       "multi_active_input": {
         "name": "Active AC input",
@@ -1473,12 +1313,10 @@
         }
       },
       "multi_ess_ac_power_setpoint": {
-        "name": "ESS AC power setpoint",
-        "unit_of_measurement": "W"
+        "name": "ESS AC power setpoint"
       },
       "multi_ess_min_soc_limit": {
-        "name": "ESS minimum SOC limit",
-        "unit_of_measurement": "%"
+        "name": "ESS minimum SOC limit"
       },
       "multi_ess_mode": {
         "name": "ESS mode",
@@ -1490,36 +1328,28 @@
         }
       },
       "multi_inverter_power_setpoint": {
-        "name": "Inverter power setpoint",
-        "unit_of_measurement": "W"
+        "name": "Inverter power setpoint"
       },
       "multi_inverter_to_acin1": {
-        "name": "Inverter to AC-in-1",
-        "unit_of_measurement": "kWh"
+        "name": "Inverter to AC-in-1"
       },
       "multi_inverter_to_acout": {
-        "name": "Inverter to AC-out",
-        "unit_of_measurement": "kWh"
+        "name": "Inverter to AC-out"
       },
       "multi_max_power_today": {
-        "name": "Max power today",
-        "unit_of_measurement": "W"
+        "name": "Max power today"
       },
       "multi_max_power_yesterday": {
-        "name": "Max power yesterday",
-        "unit_of_measurement": "W"
+        "name": "Max power yesterday"
       },
       "multi_mppt_mppt_id_yield_today": {
-        "name": "MPPT {mppt_id} yield today",
-        "unit_of_measurement": "kWh"
+        "name": "MPPT {mppt_id} yield today"
       },
       "multi_mppt_mppt_id_yield_yesterday": {
-        "name": "MPPT {mppt_id} yield yesterday",
-        "unit_of_measurement": "kWh"
+        "name": "MPPT {mppt_id} yield yesterday"
       },
       "multi_mppt_mpptnumber_power": {
-        "name": "MPPT {mpptnumber} power",
-        "unit_of_measurement": "W"
+        "name": "MPPT {mpptnumber} power"
       },
       "multi_mppt_mpptnumber_state": {
         "name": "MPPT {mpptnumber} state",
@@ -1531,32 +1361,26 @@
         }
       },
       "multi_mppt_mpptnumber_voltage": {
-        "name": "MPPT {mpptnumber} PV voltage",
-        "unit_of_measurement": "V"
+        "name": "MPPT {mpptnumber} PV voltage"
       },
       "multi_phases": {
         "name": "Phases",
         "unit_of_measurement": "phases"
       },
       "multi_pv_power_total": {
-        "name": "PV power total",
-        "unit_of_measurement": "W"
+        "name": "PV power total"
       },
       "multi_shore_current_limit": {
-        "name": "Shore current limit",
-        "unit_of_measurement": "A"
+        "name": "Shore current limit"
       },
       "multi_solar_to_acin1": {
-        "name": "Solar to AC-in-1",
-        "unit_of_measurement": "kWh"
+        "name": "Solar to AC-in-1"
       },
       "multi_solar_to_acout": {
-        "name": "Solar to AC-out",
-        "unit_of_measurement": "kWh"
+        "name": "Solar to AC-out"
       },
       "multi_solar_to_battery": {
-        "name": "Solar to battery",
-        "unit_of_measurement": "kWh"
+        "name": "Solar to battery"
       },
       "multi_state": {
         "name": "State",
@@ -1586,16 +1410,13 @@
         }
       },
       "multi_total_pv_yield": {
-        "name": "Total PV yield user",
-        "unit_of_measurement": "kWh"
+        "name": "Total PV yield user"
       },
       "multi_yield_today": {
-        "name": "Yield today",
-        "unit_of_measurement": "kWh"
+        "name": "Yield today"
       },
       "multi_yield_yesterday": {
-        "name": "Yield yesterday",
-        "unit_of_measurement": "kWh"
+        "name": "Yield yesterday"
       },
       "multiplus_assist_current_boost_factor": {
         "name": "Assist current boost factor",
@@ -1608,40 +1429,31 @@
         "name": "Installed version"
       },
       "pvinverter_current_phase": {
-        "name": "Current {phase}",
-        "unit_of_measurement": "A"
+        "name": "Current {phase}"
       },
       "pvinverter_power_phase": {
-        "name": "Power {phase}",
-        "unit_of_measurement": "W"
+        "name": "Power {phase}"
       },
       "pvinverter_power_total": {
-        "name": "Power total",
-        "unit_of_measurement": "W"
+        "name": "Power total"
       },
       "pvinverter_voltage_phase": {
-        "name": "Voltage {phase}",
-        "unit_of_measurement": "V"
+        "name": "Voltage {phase}"
       },
       "pvinverter_yield_phase": {
-        "name": "Yield {phase}",
-        "unit_of_measurement": "kWh"
+        "name": "Yield {phase}"
       },
       "pvinverter_yield_total": {
-        "name": "Total yield",
-        "unit_of_measurement": "kWh"
+        "name": "Total yield"
       },
       "solarcharger_current": {
-        "name": "PV bus current",
-        "unit_of_measurement": "A"
+        "name": "PV bus current"
       },
       "solarcharger_dc_current": {
-        "name": "DC (battery) bus current",
-        "unit_of_measurement": "A"
+        "name": "DC (battery) bus current"
       },
       "solarcharger_dc_voltage": {
-        "name": "DC (battery) bus voltage",
-        "unit_of_measurement": "V"
+        "name": "DC (battery) bus voltage"
       },
       "solarcharger_device_off_reason": {
         "name": "Device-off reason",
@@ -1688,24 +1500,19 @@
         }
       },
       "solarcharger_load_current": {
-        "name": "Load bus current",
-        "unit_of_measurement": "A"
+        "name": "Load bus current"
       },
       "solarcharger_max_battery_voltage_today": {
-        "name": "Max battery voltage today",
-        "unit_of_measurement": "V"
+        "name": "Max battery voltage today"
       },
       "solarcharger_max_power_today": {
-        "name": "Max power today",
-        "unit_of_measurement": "W"
+        "name": "Max power today"
       },
       "solarcharger_max_power_yesterday": {
-        "name": "Max power yesterday",
-        "unit_of_measurement": "W"
+        "name": "Max power yesterday"
       },
       "solarcharger_min_battery_voltage_today": {
-        "name": "Min battery voltage today",
-        "unit_of_measurement": "V"
+        "name": "Min battery voltage today"
       },
       "solarcharger_mppt_operation_mode": {
         "name": "MPPT operation mode",
@@ -1744,24 +1551,19 @@
         }
       },
       "solarcharger_time_in_absorption_today": {
-        "name": "Time in absorption today",
-        "unit_of_measurement": "s"
+        "name": "Time in absorption today"
       },
       "solarcharger_time_in_bulk_today": {
-        "name": "Time in bulk today",
-        "unit_of_measurement": "s"
+        "name": "Time in bulk today"
       },
       "solarcharger_time_in_float_today": {
-        "name": "Time in float today",
-        "unit_of_measurement": "s"
+        "name": "Time in float today"
       },
       "solarcharger_tracker_tracker_max_power_today": {
-        "name": "Tracker {tracker} max power today",
-        "unit_of_measurement": "W"
+        "name": "Tracker {tracker} max power today"
       },
       "solarcharger_tracker_tracker_max_voltage_today": {
-        "name": "Tracker {tracker} max voltage today",
-        "unit_of_measurement": "V"
+        "name": "Tracker {tracker} max voltage today"
       },
       "solarcharger_tracker_tracker_name": {
         "name": "PV tracker {tracker} name"
@@ -1776,36 +1578,28 @@
         }
       },
       "solarcharger_tracker_tracker_power": {
-        "name": "PV tracker {tracker} power",
-        "unit_of_measurement": "W"
+        "name": "PV tracker {tracker} power"
       },
       "solarcharger_tracker_tracker_voltage": {
-        "name": "PV tracker {tracker} voltage",
-        "unit_of_measurement": "V"
+        "name": "PV tracker {tracker} voltage"
       },
       "solarcharger_tracker_tracker_yield_today": {
-        "name": "Tracker {tracker} yield today",
-        "unit_of_measurement": "kWh"
+        "name": "Tracker {tracker} yield today"
       },
       "solarcharger_voltage": {
-        "name": "PV bus voltage",
-        "unit_of_measurement": "V"
+        "name": "PV bus voltage"
       },
       "solarcharger_yield_power": {
-        "name": "PV yield power",
-        "unit_of_measurement": "W"
+        "name": "PV yield power"
       },
       "solarcharger_yield_today": {
-        "name": "Yield today",
-        "unit_of_measurement": "kWh"
+        "name": "Yield today"
       },
       "solarcharger_yield_total": {
-        "name": "Total yield",
-        "unit_of_measurement": "kWh"
+        "name": "Total yield"
       },
       "solarcharger_yield_yesterday": {
-        "name": "Yield yesterday",
-        "unit_of_measurement": "kWh"
+        "name": "Yield yesterday"
       },
       "switch_output_custom_name": {
         "name": "{output} custom name"
@@ -1828,24 +1622,19 @@
         }
       },
       "system_ac_export_limit": {
-        "name": "AC export limit",
-        "unit_of_measurement": "A"
+        "name": "AC export limit"
       },
       "system_ac_input_limit": {
-        "name": "AC input limit",
-        "unit_of_measurement": "A"
+        "name": "AC input limit"
       },
       "system_ac_loads_phase": {
-        "name": "AC loads on {phase}",
-        "unit_of_measurement": "W"
+        "name": "AC loads on {phase}"
       },
       "system_ac_power_set_point": {
-        "name": "AC power setpoint",
-        "unit_of_measurement": "W"
+        "name": "AC power setpoint"
       },
       "system_consumption_current_phase": {
-        "name": "Consumption current {phase}",
-        "unit_of_measurement": "A"
+        "name": "Consumption current {phase}"
       },
       "system_consumption_on_output_phases": {
         "name": "Consumption on output phases",
@@ -1856,44 +1645,34 @@
         "unit_of_measurement": "phases"
       },
       "system_consumption_power_phase": {
-        "name": "Consumption power {phase}",
-        "unit_of_measurement": "W"
+        "name": "Consumption power {phase}"
       },
       "system_control_active_soc_limit": {
-        "name": "Active SOC limit",
-        "unit_of_measurement": "%"
+        "name": "Active SOC limit"
       },
       "system_control_scheduled_soc": {
-        "name": "Scheduled SOC",
-        "unit_of_measurement": "%"
+        "name": "Scheduled SOC"
       },
       "system_critical_loads_phase": {
-        "name": "Critical loads on {phase}",
-        "unit_of_measurement": "W"
+        "name": "Critical loads on {phase}"
       },
       "system_dc_alternator_power": {
-        "name": "DC alternator power",
-        "unit_of_measurement": "W"
+        "name": "DC alternator power"
       },
       "system_dc_battery_charge_energy": {
-        "name": "DC battery charge energy",
-        "unit_of_measurement": "kWh"
+        "name": "DC battery charge energy"
       },
       "system_dc_battery_current": {
-        "name": "DC battery current",
-        "unit_of_measurement": "A"
+        "name": "DC battery current"
       },
       "system_dc_battery_discharge_energy": {
-        "name": "DC battery discharge energy",
-        "unit_of_measurement": "kWh"
+        "name": "DC battery discharge energy"
       },
       "system_dc_battery_power": {
-        "name": "DC battery power",
-        "unit_of_measurement": "W"
+        "name": "DC battery power"
       },
       "system_dc_battery_soc": {
-        "name": "DC battery charge",
-        "unit_of_measurement": "%"
+        "name": "DC battery charge"
       },
       "system_dc_battery_state": {
         "name": "DC battery state",
@@ -1904,28 +1683,22 @@
         }
       },
       "system_dc_battery_voltage": {
-        "name": "DC battery voltage",
-        "unit_of_measurement": "V"
+        "name": "DC battery voltage"
       },
       "system_dc_consumption": {
-        "name": "DC consumption",
-        "unit_of_measurement": "W"
+        "name": "DC consumption"
       },
       "system_dc_pv_current": {
-        "name": "PV current",
-        "unit_of_measurement": "A"
+        "name": "PV current"
       },
       "system_dc_pv_energy": {
-        "name": "PV energy",
-        "unit_of_measurement": "kWh"
+        "name": "PV energy"
       },
       "system_dc_pv_power": {
-        "name": "PV power",
-        "unit_of_measurement": "W"
+        "name": "PV power"
       },
       "system_dynamicess_available_overhead": {
-        "name": "Dynamic ESS available overhead",
-        "unit_of_measurement": "W"
+        "name": "Dynamic ESS available overhead"
       },
       "system_dynamicess_error": {
         "name": "Dynamic ESS error",
@@ -1945,8 +1718,7 @@
         "name": "Dynamic ESS last scheduled start"
       },
       "system_dynamicess_minimum_soc": {
-        "name": "Dynamic ESS minimum SOC",
-        "unit_of_measurement": "%"
+        "name": "Dynamic ESS minimum SOC"
       },
       "system_dynamicess_reactive_strategy": {
         "name": "Dynamic ESS reactive strategy",
@@ -2003,8 +1775,7 @@
         }
       },
       "system_dynamicess_target_soc": {
-        "name": "Dynamic ESS target SOC",
-        "unit_of_measurement": "%"
+        "name": "Dynamic ESS target SOC"
       },
       "system_ess_batterylife_state": {
         "name": "ESS BatteryLife state",
@@ -2024,24 +1795,19 @@
         }
       },
       "system_ess_max_charge_current": {
-        "name": "ESS max charge current",
-        "unit_of_measurement": "A"
+        "name": "ESS max charge current"
       },
       "system_ess_max_charge_voltage": {
-        "name": "ESS max charge voltage",
-        "unit_of_measurement": "V"
+        "name": "ESS max charge voltage"
       },
       "system_ess_max_feed_in_power": {
-        "name": "ESS max feed-in power",
-        "unit_of_measurement": "W"
+        "name": "ESS max feed-in power"
       },
       "system_ess_max_inverter_power_limit": {
-        "name": "ESS max inverter power limit",
-        "unit_of_measurement": "W"
+        "name": "ESS max inverter power limit"
       },
       "system_ess_min_soc_limit": {
-        "name": "ESS min SOC limit",
-        "unit_of_measurement": "%"
+        "name": "ESS min SOC limit"
       },
       "system_ess_mode": {
         "name": "ESS mode (Hub4)",
@@ -2077,44 +1843,36 @@
         }
       },
       "system_ess_schedule_charge_slot_duration": {
-        "name": "ESS BatteryLife schedule charge {slot} duration",
-        "unit_of_measurement": "min"
+        "name": "ESS BatteryLife schedule charge {slot} duration"
       },
       "system_ess_schedule_charge_slot_soc": {
-        "name": "ESS BatteryLife schedule charge {slot} SOC",
-        "unit_of_measurement": "%"
+        "name": "ESS BatteryLife schedule charge {slot} SOC"
       },
       "system_generator_load_phase": {
-        "name": "Genset load {phase}",
-        "unit_of_measurement": "W"
+        "name": "Genset load {phase}"
       },
       "system_grid_current_phase": {
-        "name": "Grid current {phase}",
-        "unit_of_measurement": "A"
+        "name": "Grid current {phase}"
       },
       "system_grid_phases": {
         "name": "Grid phases",
         "unit_of_measurement": "phases"
       },
       "system_grid_power_phase": {
-        "name": "Grid power {phase}",
-        "unit_of_measurement": "W"
+        "name": "Grid power {phase}"
       },
       "system_heartbeat": {
-        "name": "GX system heartbeat",
-        "unit_of_measurement": "s"
+        "name": "GX system heartbeat"
       },
       "system_pv_on_output_current_phase": {
-        "name": "PV on output current {phase}",
-        "unit_of_measurement": "A"
+        "name": "PV on output current {phase}"
       },
       "system_pv_on_output_phases": {
         "name": "PV on output phases",
         "unit_of_measurement": "phases"
       },
       "system_pv_on_output_power_phase": {
-        "name": "PV on output power {phase}",
-        "unit_of_measurement": "W"
+        "name": "PV on output power {phase}"
       },
       "system_relay_relay_custom_name": {
         "name": "Relay {relay} custom name"
@@ -2157,8 +1915,7 @@
         }
       },
       "tank_battery_voltage": {
-        "name": "Sensor battery voltage",
-        "unit_of_measurement": "V"
+        "name": "Sensor battery voltage"
       },
       "tank_fluid_type": {
         "name": "Fluid type",
@@ -2182,24 +1939,20 @@
         "unit_of_measurement": "%"
       },
       "tank_remaining": {
-        "name": "Remaining",
-        "unit_of_measurement": "L"
+        "name": "Remaining"
       },
       "tank_temperature": {
-        "name": "Temperature",
-        "unit_of_measurement": "°C"
+        "name": "Temperature"
       },
       "temperature_battery_voltage": {
-        "name": "Sensor battery voltage",
-        "unit_of_measurement": "V"
+        "name": "Sensor battery voltage"
       },
       "temperature_humidity": {
         "name": "Humidity",
         "unit_of_measurement": "%"
       },
       "temperature_offset": {
-        "name": "Offset",
-        "unit_of_measurement": "°C"
+        "name": "Offset"
       },
       "temperature_pressure": {
         "name": "Pressure",
@@ -2220,8 +1973,7 @@
         }
       },
       "temperature_temperature": {
-        "name": "Temperature",
-        "unit_of_measurement": "°C"
+        "name": "Temperature"
       },
       "temperature_type": {
         "name": "Sensor type",
@@ -2236,72 +1988,55 @@
         }
       },
       "transfer_switch_generator_current_limit": {
-        "name": "Generator AC current limit",
-        "unit_of_measurement": "A"
+        "name": "Generator AC current limit"
       },
       "vebus_ac_power_setpoint_phase": {
-        "name": "AC power setpoint {phase}",
-        "unit_of_measurement": "W"
+        "name": "AC power setpoint {phase}"
       },
       "vebus_device_device_number_input_power_l1": {
-        "name": "{device_number} line 1 input power",
-        "unit_of_measurement": "W"
+        "name": "{device_number} line 1 input power"
       },
       "vebus_device_device_number_input_power_phase": {
-        "name": "{device_number} line {phase} input power",
-        "unit_of_measurement": "W"
+        "name": "{device_number} line {phase} input power"
       },
       "vebus_device_device_number_inverted_power": {
-        "name": "{device_number} inverted power",
-        "unit_of_measurement": "W"
+        "name": "{device_number} inverted power"
       },
       "vebus_device_device_number_output_power_l1": {
-        "name": "{device_number} line 1 output power",
-        "unit_of_measurement": "W"
+        "name": "{device_number} line 1 output power"
       },
       "vebus_device_device_number_output_power_phase": {
-        "name": "{device_number} line {phase} output power",
-        "unit_of_measurement": "W"
+        "name": "{device_number} line {phase} output power"
       },
       "vebus_energy_ac_in1_to_ac_out": {
-        "name": "Energy from AC-in-1 to AC-out",
-        "unit_of_measurement": "kWh"
+        "name": "Energy from AC-in-1 to AC-out"
       },
       "vebus_energy_ac_in1_to_inverter": {
-        "name": "Energy from AC-in-1 to inverter",
-        "unit_of_measurement": "kWh"
+        "name": "Energy from AC-in-1 to inverter"
       },
       "vebus_energy_ac_in2_to_ac_out": {
-        "name": "Energy from AC-in-2 to AC-out",
-        "unit_of_measurement": "kWh"
+        "name": "Energy from AC-in-2 to AC-out"
       },
       "vebus_energy_ac_in2_to_inverter": {
-        "name": "Energy from AC-in-2 to inverter",
-        "unit_of_measurement": "kWh"
+        "name": "Energy from AC-in-2 to inverter"
       },
       "vebus_energy_ac_out_to_ac_in1": {
-        "name": "Energy from AC-out to AC-in-1",
-        "unit_of_measurement": "kWh"
+        "name": "Energy from AC-out to AC-in-1"
       },
       "vebus_energy_ac_out_to_ac_in2": {
-        "name": "Energy from AC-out to AC-in-2",
-        "unit_of_measurement": "kWh"
+        "name": "Energy from AC-out to AC-in-2"
       },
       "vebus_energy_inverter_to_ac_in1": {
-        "name": "Energy from inverter to AC-in-1",
-        "unit_of_measurement": "kWh"
+        "name": "Energy from inverter to AC-in-1"
       },
       "vebus_energy_inverter_to_ac_in2": {
-        "name": "Energy from inverter to AC-in-2",
-        "unit_of_measurement": "kWh"
+        "name": "Energy from inverter to AC-in-2"
       },
       "vebus_energy_inverter_to_ac_out": {
-        "name": "Energy from inverter to AC-out",
-        "unit_of_measurement": "kWh"
+        "name": "Energy from inverter to AC-out"
       },
       "vebus_energy_out_to_inverter": {
-        "name": "Energy from out to inverter",
-        "unit_of_measurement": "kWh"
+        "name": "Energy from out to inverter"
       },
       "vebus_inverter_active_input": {
         "name": "Active AC input",
@@ -2394,20 +2129,16 @@
         }
       },
       "vebus_inverter_current_limit": {
-        "name": "Current limit",
-        "unit_of_measurement": "A"
+        "name": "Current limit"
       },
       "vebus_inverter_dc_current": {
-        "name": "DC current",
-        "unit_of_measurement": "A"
+        "name": "DC current"
       },
       "vebus_inverter_dc_power": {
-        "name": "DC power",
-        "unit_of_measurement": "W"
+        "name": "DC power"
       },
       "vebus_inverter_dc_temperature": {
-        "name": "DC temperature",
-        "unit_of_measurement": "°C"
+        "name": "DC temperature"
       },
       "vebus_inverter_ignoreacin1_state": {
         "name": "State of ignore AC-in-1",
@@ -2417,24 +2148,19 @@
         }
       },
       "vebus_inverter_input_apparent_power_phase": {
-        "name": "Input apparent power {phase}",
-        "unit_of_measurement": "VA"
+        "name": "Input apparent power {phase}"
       },
       "vebus_inverter_input_current_phase": {
-        "name": "Input current {phase}",
-        "unit_of_measurement": "A"
+        "name": "Input current {phase}"
       },
       "vebus_inverter_input_frequency_phase": {
-        "name": "Input frequency {phase}",
-        "unit_of_measurement": "Hz"
+        "name": "Input frequency {phase}"
       },
       "vebus_inverter_input_power_phase": {
-        "name": "Input power {phase}",
-        "unit_of_measurement": "W"
+        "name": "Input power {phase}"
       },
       "vebus_inverter_input_voltage_phase": {
-        "name": "Input voltage {phase}",
-        "unit_of_measurement": "V"
+        "name": "Input voltage {phase}"
       },
       "vebus_inverter_mode": {
         "name": "Mode",
@@ -2446,24 +2172,19 @@
         }
       },
       "vebus_inverter_output_apparent_power_phase": {
-        "name": "Output apparent power {phase}",
-        "unit_of_measurement": "VA"
+        "name": "Output apparent power {phase}"
       },
       "vebus_inverter_output_current_phase": {
-        "name": "Output current {phase}",
-        "unit_of_measurement": "A"
+        "name": "Output current {phase}"
       },
       "vebus_inverter_output_frequency_phase": {
-        "name": "Output frequency {phase}",
-        "unit_of_measurement": "Hz"
+        "name": "Output frequency {phase}"
       },
       "vebus_inverter_output_power_phase": {
-        "name": "Output power {phase}",
-        "unit_of_measurement": "W"
+        "name": "Output power {phase}"
       },
       "vebus_inverter_output_voltage_phase": {
-        "name": "Output voltage {phase}",
-        "unit_of_measurement": "V"
+        "name": "Output voltage {phase}"
       },
       "vebus_inverter_state": {
         "name": "State",

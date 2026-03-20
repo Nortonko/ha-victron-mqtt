@@ -144,17 +144,21 @@ async def test_metric_mappings(hass: HomeAssistant, mock_device, base_metric) ->
     )
     assert sensor.state_class is None
 
-    # Units are provided through translation files via translation_key.
-    for unit in ("s", "min", "h", "V"):
-        base_metric.unit_of_measurement = unit
-        sensor = VictronSensor(
-            mock_device,
-            base_metric,
-            device_info,
-            simple_naming=True,
-            installation_id="x",
-        )
-        assert sensor.native_unit_of_measurement is None
+    # Unit of measurement: set natively only when device_class is present
+    base_metric.metric_type = MetricType.VOLTAGE  # has device_class
+    base_metric.unit_of_measurement = "V"
+    sensor = VictronSensor(
+        mock_device, base_metric, device_info, simple_naming=True, installation_id="x"
+    )
+    assert sensor.native_unit_of_measurement == "V"
+
+    # Without device_class, native_unit should be None (translation handles display)
+    base_metric.metric_type = MetricType.NONE  # no device_class
+    base_metric.unit_of_measurement = "modules"
+    sensor = VictronSensor(
+        mock_device, base_metric, device_info, simple_naming=True, installation_id="x"
+    )
+    assert sensor.native_unit_of_measurement is None
 
 
 async def test_translation_fields(

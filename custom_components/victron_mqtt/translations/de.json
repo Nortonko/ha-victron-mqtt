@@ -127,136 +127,105 @@
     },
     "number": {
       "evcharger_set_current": {
-        "name": "EV-Lader Sollstrom",
-        "unit_of_measurement": "A"
+        "name": "EV-Lader Sollstrom"
       },
       "generator_gen_id_cool_down_timer": {
-        "name": "Generator Abkühl-Timer",
-        "unit_of_measurement": "s"
+        "name": "Generator Abkühl-Timer"
       },
       "generator_gen_id_qh_start_on_soc": {
-        "name": "Generator QH Start bei SoC",
-        "unit_of_measurement": "%"
+        "name": "Generator QH Start bei SoC"
       },
       "generator_gen_id_qh_start_on_voltage": {
-        "name": "Generator QH Start bei Spannung",
-        "unit_of_measurement": "V"
+        "name": "Generator QH Start bei Spannung"
       },
       "generator_gen_id_qh_stop_on_soc": {
-        "name": "Generator QH Stopp bei SoC",
-        "unit_of_measurement": "%"
+        "name": "Generator QH Stopp bei SoC"
       },
       "generator_gen_id_qh_stop_on_voltage": {
-        "name": "Generator QH Stopp bei Spannung",
-        "unit_of_measurement": "V"
+        "name": "Generator QH Stopp bei Spannung"
       },
       "generator_gen_id_service_interval": {
-        "name": "Generator Serviceintervall",
-        "unit_of_measurement": "h"
+        "name": "Generator Serviceintervall"
       },
       "generator_gen_id_shut_down_timer": {
-        "name": "Generator Abschalt-Timer",
-        "unit_of_measurement": "s"
+        "name": "Generator Abschalt-Timer"
       },
       "generator_gen_id_start_on_soc": {
-        "name": "Generator Start bei SoC",
-        "unit_of_measurement": "%"
+        "name": "Generator Start bei SoC"
       },
       "generator_gen_id_start_on_soc_timer": {
-        "name": "Generator Start-Timer bei SoC",
-        "unit_of_measurement": "s"
+        "name": "Generator Start-Timer bei SoC"
       },
       "generator_gen_id_start_on_temp_timer": {
-        "name": "Generator Start-Timer bei Temperatur",
-        "unit_of_measurement": "s"
+        "name": "Generator Start-Timer bei Temperatur"
       },
       "generator_gen_id_start_on_voltage": {
-        "name": "Generator Start bei Spannung",
-        "unit_of_measurement": "V"
+        "name": "Generator Start bei Spannung"
       },
       "generator_gen_id_start_on_voltage_timer": {
-        "name": "Generator Start-Timer bei Spannung",
-        "unit_of_measurement": "s"
+        "name": "Generator Start-Timer bei Spannung"
       },
       "generator_gen_id_stop_on_soc": {
-        "name": "Generator Stopp bei SoC",
-        "unit_of_measurement": "%"
+        "name": "Generator Stopp bei SoC"
       },
       "generator_gen_id_stop_on_soc_timer": {
-        "name": "Generator Stopp-Timer bei SoC",
-        "unit_of_measurement": "s"
+        "name": "Generator Stopp-Timer bei SoC"
       },
       "generator_gen_id_stop_on_temp_timer": {
-        "name": "Generator Stopp-Timer bei Temperatur",
-        "unit_of_measurement": "s"
+        "name": "Generator Stopp-Timer bei Temperatur"
       },
       "generator_gen_id_stop_on_voltage": {
-        "name": "Generator Stopp bei Spannung",
-        "unit_of_measurement": "V"
+        "name": "Generator Stopp bei Spannung"
       },
       "generator_gen_id_stop_on_voltage_timer": {
-        "name": "Generator Stopp-Timer bei Spannung",
-        "unit_of_measurement": "s"
+        "name": "Generator Stopp-Timer bei Spannung"
       },
       "generator_gen_id_warm_up_timer": {
-        "name": "Generator Aufwärm-Timer",
-        "unit_of_measurement": "s"
+        "name": "Generator Aufwärm-Timer"
       },
       "multiplus_assist_current_boost_factor": {
         "name": "Assist-Strom-Boost-Faktor",
         "unit_of_measurement": "factor"
       },
       "switch_output_dimming": {
-        "name": "Ausgang {output} Dimmung",
-        "unit_of_measurement": "%"
+        "name": "Ausgang {output} Dimmung"
       },
       "system_ac_export_limit": {
-        "name": "AC-Exportlimit",
-        "unit_of_measurement": "A"
+        "name": "AC-Exportlimit"
       },
       "system_ac_input_limit": {
-        "name": "AC-Einspeiselimit",
-        "unit_of_measurement": "A"
+        "name": "AC-Einspeiselimit"
       },
       "system_ac_power_set_point": {
-        "name": "AC-Leistungs-Sollwert",
-        "unit_of_measurement": "W"
+        "name": "AC-Leistungs-Sollwert"
       },
       "system_ess_max_charge_current": {
-        "name": "ESS max. Ladestrom",
-        "unit_of_measurement": "A"
+        "name": "ESS max. Ladestrom"
       },
       "system_ess_max_charge_voltage": {
-        "name": "ESS max. Ladespannung",
-        "unit_of_measurement": "V"
+        "name": "ESS max. Ladespannung"
       },
       "system_ess_max_feed_in_power": {
-        "name": "ESS max. Einspeiseleistung",
-        "unit_of_measurement": "W"
+        "name": "ESS max. Einspeiseleistung"
       },
       "system_ess_max_inverter_power_limit": {
-        "name": "ESS max. Wechselrichterleistung",
-        "unit_of_measurement": "W"
+        "name": "ESS max. Wechselrichterleistung"
       },
       "system_ess_min_soc_limit": {
-        "name": "ESS Mindest-SoC-Grenze",
-        "unit_of_measurement": "%"
+        "name": "ESS Mindest-SoC-Grenze"
       },
       "temperature_offset": {
-        "name": "Temperatur-Offset",
-        "unit_of_measurement": "°C"
+        "name": "Temperatur-Offset"
       },
       "temperature_scale": {
         "name": "Temperatur-Skalierungsfaktor",
         "unit_of_measurement": "factor"
       },
       "transfer_switch_generator_current_limit": {
-        "name": "Generator AC-Stromlimit",
-        "unit_of_measurement": "A"
+        "name": "Generator AC-Stromlimit"
       },
       "vebus_inverter_current_limit": {
-        "name": "Wechselrichter Stromlimit",
-        "unit_of_measurement": "A"
+        "name": "Wechselrichter Stromlimit"
       }
     },
     "select": {
@@ -278,32 +247,25 @@
     },
     "sensor": {
       "alternator_dc_current": {
-        "name": "DC-Ausgangsstrom",
-        "unit_of_measurement": "A"
+        "name": "DC-Ausgangsstrom"
       },
       "alternator_dc_power": {
-        "name": "DC-Ausgangsleistung",
-        "unit_of_measurement": "W"
+        "name": "DC-Ausgangsleistung"
       },
       "alternator_dc_voltage": {
-        "name": "DC-Ausgangsspannung",
-        "unit_of_measurement": "V"
+        "name": "DC-Ausgangsspannung"
       },
       "alternator_input_current": {
-        "name": "Eingangsstrom",
-        "unit_of_measurement": "A"
+        "name": "Eingangsstrom"
       },
       "alternator_input_power": {
-        "name": "Eingangsleistung",
-        "unit_of_measurement": "W"
+        "name": "Eingangsleistung"
       },
       "alternator_input_voltage": {
-        "name": "Eingangsspannung",
-        "unit_of_measurement": "V"
+        "name": "Eingangsspannung"
       },
       "auxiliary_battery_voltage": {
-        "name": "Hilfsbatteriespannung",
-        "unit_of_measurement": "V"
+        "name": "Hilfsbatteriespannung"
       },
       "battery_automatic_syncs": {
         "name": "Automatische Synchronisierungen",
@@ -314,31 +276,26 @@
         "unit_of_measurement": "Ah"
       },
       "battery_cell_cell_id_voltage": {
-        "name": "Batteriezelle {cell_id} Spannung",
-        "unit_of_measurement": "V"
+        "name": "Batteriezelle {cell_id} Spannung"
       },
       "battery_cell_imbalance": {
         "name": "Batteriezellen-Ungleichgewicht"
       },
       "battery_cell_voltage_deviation": {
-        "name": "Abweichung der Zellspannung",
-        "unit_of_measurement": "V"
+        "name": "Abweichung der Zellspannung"
       },
       "battery_charged_energy": {
-        "name": "Geladene Energie",
-        "unit_of_measurement": "kWh"
+        "name": "Geladene Energie"
       },
       "battery_consumed_amphours": {
         "name": "Verbrauchte Amperestunden",
         "unit_of_measurement": "Ah"
       },
       "battery_current": {
-        "name": "DC-Busstrom",
-        "unit_of_measurement": "A"
+        "name": "DC-Busstrom"
       },
       "battery_discharged_energy": {
-        "name": "Entladene Energie",
-        "unit_of_measurement": "kWh"
+        "name": "Entladene Energie"
       },
       "battery_high_charge_current": {
         "name": "Batterie: Hoher Ladestrom"
@@ -363,35 +320,28 @@
         "name": "Batterie: Niedrige Ladetemperatur"
       },
       "battery_max_cell_temperature": {
-        "name": "Maximale Zelltemperatur",
-        "unit_of_measurement": "°C"
+        "name": "Maximale Zelltemperatur"
       },
       "battery_max_cell_voltage": {
-        "name": "Maximale Zellspannung",
-        "unit_of_measurement": "V"
+        "name": "Maximale Zellspannung"
       },
       "battery_max_charge_current": {
-        "name": "Maximal zulässiger Ladestrom",
-        "unit_of_measurement": "A"
+        "name": "Maximal zulässiger Ladestrom"
       },
       "battery_max_charge_voltage": {
-        "name": "Maximal zulässige Ladespannung",
-        "unit_of_measurement": "V"
+        "name": "Maximal zulässige Ladespannung"
       },
       "battery_max_discharge_current": {
-        "name": "Maximal zulässiger Entladestrom",
-        "unit_of_measurement": "A"
+        "name": "Maximal zulässiger Entladestrom"
       },
       "battery_max_voltage_cell_id": {
         "name": "Zell-ID mit maximaler Spannung"
       },
       "battery_min_cell_temperature": {
-        "name": "Minimale Zelltemperatur",
-        "unit_of_measurement": "°C"
+        "name": "Minimale Zelltemperatur"
       },
       "battery_min_cell_voltage": {
-        "name": "Minimale Zellspannung",
-        "unit_of_measurement": "V"
+        "name": "Minimale Zellspannung"
       },
       "battery_min_voltage_cell_id": {
         "name": "Zell-ID mit minimaler Spannung"
@@ -413,59 +363,46 @@
         "unit_of_measurement": "modules"
       },
       "battery_power": {
-        "name": "Batterieleistung",
-        "unit_of_measurement": "W"
+        "name": "Batterieleistung"
       },
       "battery_soc": {
-        "name": "Batterieladung",
-        "unit_of_measurement": "%"
+        "name": "Batterieladung"
       },
       "battery_soh": {
-        "name": "Batteriezustand (SoH)",
-        "unit_of_measurement": "%"
+        "name": "Batteriezustand (SoH)"
       },
       "battery_temperature": {
-        "name": "Batterietemperatur",
-        "unit_of_measurement": "°C"
+        "name": "Batterietemperatur"
       },
       "battery_time_to_go": {
-        "name": "Restlaufzeit der Batterie",
-        "unit_of_measurement": "s"
+        "name": "Restlaufzeit der Batterie"
       },
       "battery_voltage": {
-        "name": "DC-Busspannung",
-        "unit_of_measurement": "V"
+        "name": "DC-Busspannung"
       },
       "charge_mode": {
         "name": "Batterie-Lademodus"
       },
       "dcload_current": {
-        "name": "DC-Laststrom",
-        "unit_of_measurement": "A"
+        "name": "DC-Laststrom"
       },
       "dcload_power": {
-        "name": "DC-Lastleistung",
-        "unit_of_measurement": "W"
+        "name": "DC-Lastleistung"
       },
       "dcload_voltage": {
-        "name": "DC-Lastspannung",
-        "unit_of_measurement": "V"
+        "name": "DC-Lastspannung"
       },
       "dcsystem_aux_voltage": {
-        "name": "DC-System Hilfsspannung",
-        "unit_of_measurement": "V"
+        "name": "DC-System Hilfsspannung"
       },
       "dcsystem_current": {
-        "name": "DC-Systemstrom",
-        "unit_of_measurement": "A"
+        "name": "DC-Systemstrom"
       },
       "dcsystem_power": {
-        "name": "DC-Systemleistung",
-        "unit_of_measurement": "W"
+        "name": "DC-Systemleistung"
       },
       "dcsystem_voltage": {
-        "name": "DC-Systemspannung",
-        "unit_of_measurement": "V"
+        "name": "DC-Systemspannung"
       },
       "digitalinput_alarm": {
         "name": "Digitaleingang Alarm"
@@ -480,106 +417,82 @@
         "name": "Digitaleingang Typ"
       },
       "evcharger_current": {
-        "name": "EV-Lader Strom",
-        "unit_of_measurement": "A"
+        "name": "EV-Lader Strom"
       },
       "evcharger_mode": {
         "name": "EV-Lader Modus"
       },
       "evcharger_power_phase": {
-        "name": "EV-Lader Leistung {phase}",
-        "unit_of_measurement": "W"
+        "name": "EV-Lader Leistung {phase}"
       },
       "evcharger_set_current": {
-        "name": "EV-Lader Sollstrom",
-        "unit_of_measurement": "A"
+        "name": "EV-Lader Sollstrom"
       },
       "generator_gen_id_cool_down_timer": {
-        "name": "Generator Abkühl-Timer",
-        "unit_of_measurement": "s"
+        "name": "Generator Abkühl-Timer"
       },
       "generator_gen_id_qh_start_on_soc": {
-        "name": "Generator QH Start bei SoC",
-        "unit_of_measurement": "%"
+        "name": "Generator QH Start bei SoC"
       },
       "generator_gen_id_qh_start_on_voltage": {
-        "name": "Generator QH Start bei Spannung",
-        "unit_of_measurement": "V"
+        "name": "Generator QH Start bei Spannung"
       },
       "generator_gen_id_qh_stop_on_soc": {
-        "name": "Generator QH Stopp bei SoC",
-        "unit_of_measurement": "%"
+        "name": "Generator QH Stopp bei SoC"
       },
       "generator_gen_id_qh_stop_on_voltage": {
-        "name": "Generator QH Stopp bei Spannung",
-        "unit_of_measurement": "V"
+        "name": "Generator QH Stopp bei Spannung"
       },
       "generator_gen_id_service_interval": {
-        "name": "Generator Serviceintervall",
-        "unit_of_measurement": "h"
+        "name": "Generator Serviceintervall"
       },
       "generator_gen_id_shut_down_timer": {
-        "name": "Generator Abschalt-Timer",
-        "unit_of_measurement": "s"
+        "name": "Generator Abschalt-Timer"
       },
       "generator_gen_id_start_on_soc": {
-        "name": "Generator Start bei SoC",
-        "unit_of_measurement": "%"
+        "name": "Generator Start bei SoC"
       },
       "generator_gen_id_start_on_soc_timer": {
-        "name": "Generator Start-Timer bei SoC",
-        "unit_of_measurement": "s"
+        "name": "Generator Start-Timer bei SoC"
       },
       "generator_gen_id_start_on_temp_timer": {
-        "name": "Generator Start-Timer bei Temperatur",
-        "unit_of_measurement": "s"
+        "name": "Generator Start-Timer bei Temperatur"
       },
       "generator_gen_id_start_on_voltage": {
-        "name": "Generator Start bei Spannung",
-        "unit_of_measurement": "V"
+        "name": "Generator Start bei Spannung"
       },
       "generator_gen_id_start_on_voltage_timer": {
-        "name": "Generator Start-Timer bei Spannung",
-        "unit_of_measurement": "s"
+        "name": "Generator Start-Timer bei Spannung"
       },
       "generator_gen_id_stop_on_soc": {
-        "name": "Generator Stopp bei SoC",
-        "unit_of_measurement": "%"
+        "name": "Generator Stopp bei SoC"
       },
       "generator_gen_id_stop_on_soc_timer": {
-        "name": "Generator Stopp-Timer bei SoC",
-        "unit_of_measurement": "s"
+        "name": "Generator Stopp-Timer bei SoC"
       },
       "generator_gen_id_stop_on_temp_timer": {
-        "name": "Generator Stopp-Timer bei Temperatur",
-        "unit_of_measurement": "s"
+        "name": "Generator Stopp-Timer bei Temperatur"
       },
       "generator_gen_id_stop_on_voltage": {
-        "name": "Generator Stopp bei Spannung",
-        "unit_of_measurement": "V"
+        "name": "Generator Stopp bei Spannung"
       },
       "generator_gen_id_stop_on_voltage_timer": {
-        "name": "Generator Stopp-Timer bei Spannung",
-        "unit_of_measurement": "s"
+        "name": "Generator Stopp-Timer bei Spannung"
       },
       "generator_gen_id_warm_up_timer": {
-        "name": "Generator Aufwärm-Timer",
-        "unit_of_measurement": "s"
+        "name": "Generator Aufwärm-Timer"
       },
       "generator_run_state": {
         "name": "Generator Betriebszustand"
       },
       "generator_service_counter": {
-        "name": "Generator Servicezähler",
-        "unit_of_measurement": "h"
+        "name": "Generator Servicezähler"
       },
       "generator_today_runtime": {
-        "name": "Generator Laufzeit heute",
-        "unit_of_measurement": "h"
+        "name": "Generator Laufzeit heute"
       },
       "generator_total_runtime": {
-        "name": "Generator Gesamtlaufzeit",
-        "unit_of_measurement": "h"
+        "name": "Generator Gesamtlaufzeit"
       },
       "gps_altitude": {
         "name": "GPS Höhe",
@@ -602,83 +515,64 @@
         "unit_of_measurement": "satellites"
       },
       "gps_speed": {
-        "name": "GPS Geschwindigkeit",
-        "unit_of_measurement": "m/s"
+        "name": "GPS Geschwindigkeit"
       },
       "grid_current": {
-        "name": "Netzstrom",
-        "unit_of_measurement": "A"
+        "name": "Netzstrom"
       },
       "grid_current_n": {
-        "name": "Netzstrom am N",
-        "unit_of_measurement": "A"
+        "name": "Netzstrom am N"
       },
       "grid_current_phase": {
-        "name": "Netzstrom auf {phase}",
-        "unit_of_measurement": "A"
+        "name": "Netzstrom auf {phase}"
       },
       "grid_energy_forward": {
-        "name": "Netzbezug",
-        "unit_of_measurement": "kWh"
+        "name": "Netzbezug"
       },
       "grid_energy_forward_phase": {
-        "name": "Netzbezug auf {phase}",
-        "unit_of_measurement": "kWh"
+        "name": "Netzbezug auf {phase}"
       },
       "grid_energy_reverse": {
-        "name": "Netzeinspeisung",
-        "unit_of_measurement": "kWh"
+        "name": "Netzeinspeisung"
       },
       "grid_energy_reverse_phase": {
-        "name": "Netzeinspeisung auf {phase}",
-        "unit_of_measurement": "kWh"
+        "name": "Netzeinspeisung auf {phase}"
       },
       "grid_frequency": {
-        "name": "Netzfrequenz",
-        "unit_of_measurement": "Hz"
+        "name": "Netzfrequenz"
       },
       "grid_power": {
-        "name": "Netzleistung",
-        "unit_of_measurement": "W"
+        "name": "Netzleistung"
       },
       "grid_power_phase": {
-        "name": "Netzleistung auf {phase}",
-        "unit_of_measurement": "W"
+        "name": "Netzleistung auf {phase}"
       },
       "grid_voltage": {
-        "name": "Netzspannung",
-        "unit_of_measurement": "V"
+        "name": "Netzspannung"
       },
       "grid_voltage_pen": {
-        "name": "Netzspannung am PEN",
-        "unit_of_measurement": "V"
+        "name": "Netzspannung am PEN"
       },
       "grid_voltage_phase": {
-        "name": "Netzspannung auf {phase}",
-        "unit_of_measurement": "V"
+        "name": "Netzspannung auf {phase}"
       },
       "grid_voltage_phase_next_phase": {
-        "name": "Netzspannung {phase} zu {next_phase}",
-        "unit_of_measurement": "V"
+        "name": "Netzspannung {phase} zu {next_phase}"
       },
       "inverter_mode": {
         "name": "Wechselrichtermodus"
       },
       "inverter_output_apparent_power_phase": {
-        "name": "Wechselrichter Scheinleistung {phase}",
-        "unit_of_measurement": "VA"
+        "name": "Wechselrichter Scheinleistung {phase}"
       },
       "inverter_output_current_phase": {
-        "name": "Wechselrichter Ausgangsstrom {phase}",
-        "unit_of_measurement": "A"
+        "name": "Wechselrichter Ausgangsstrom {phase}"
       },
       "inverter_output_power_phase": {
-        "name": "Wechselrichter Ausgangsleistung {phase}",
-        "unit_of_measurement": "W"
+        "name": "Wechselrichter Ausgangsleistung {phase}"
       },
       "inverter_output_voltage_phase": {
-        "name": "Wechselrichter Ausgangsspannung {phase}",
-        "unit_of_measurement": "V"
+        "name": "Wechselrichter Ausgangsspannung {phase}"
       },
       "inverter_state": {
         "name": "Wechselrichterzustand"
@@ -736,63 +630,49 @@
         "name": "PV-Ertrag gesamt"
       },
       "pvinverter_current_phase": {
-        "name": "Strom {phase}",
-        "unit_of_measurement": "A"
+        "name": "Strom {phase}"
       },
       "pvinverter_power_phase": {
-        "name": "Leistung {phase}",
-        "unit_of_measurement": "W"
+        "name": "Leistung {phase}"
       },
       "pvinverter_power_total": {
-        "name": "Leistung gesamt",
-        "unit_of_measurement": "W"
+        "name": "Leistung gesamt"
       },
       "pvinverter_voltage_phase": {
-        "name": "Spannung {phase}",
-        "unit_of_measurement": "V"
+        "name": "Spannung {phase}"
       },
       "pvinverter_yield_phase": {
-        "name": "Ertrag {phase}",
-        "unit_of_measurement": "kWh"
+        "name": "Ertrag {phase}"
       },
       "pvinverter_yield_total": {
-        "name": "Gesamtertrag",
-        "unit_of_measurement": "kWh"
+        "name": "Gesamtertrag"
       },
       "solarcharger_current": {
-        "name": "PV-Busstrom",
-        "unit_of_measurement": "A"
+        "name": "PV-Busstrom"
       },
       "solarcharger_dc_current": {
-        "name": "DC (Batterie)-Busstrom",
-        "unit_of_measurement": "A"
+        "name": "DC (Batterie)-Busstrom"
       },
       "solarcharger_dc_voltage": {
-        "name": "DC (Batterie)-Busspannung",
-        "unit_of_measurement": "V"
+        "name": "DC (Batterie)-Busspannung"
       },
       "solarcharger_error_code": {
         "name": "Solar-Laderegler Fehlercode"
       },
       "solarcharger_load_current": {
-        "name": "Last-Busstrom",
-        "unit_of_measurement": "A"
+        "name": "Last-Busstrom"
       },
       "solarcharger_max_battery_voltage_today": {
-        "name": "Solar-Laderegler max. Batteriespannung heute",
-        "unit_of_measurement": "V"
+        "name": "Solar-Laderegler max. Batteriespannung heute"
       },
       "solarcharger_max_power_today": {
-        "name": "Maximale Leistung heute",
-        "unit_of_measurement": "W"
+        "name": "Maximale Leistung heute"
       },
       "solarcharger_max_power_yesterday": {
-        "name": "Maximale Leistung gestern",
-        "unit_of_measurement": "W"
+        "name": "Maximale Leistung gestern"
       },
       "solarcharger_min_battery_voltage_today": {
-        "name": "Solar-Laderegler min. Batteriespannung heute",
-        "unit_of_measurement": "V"
+        "name": "Solar-Laderegler min. Batteriespannung heute"
       },
       "solarcharger_mppt_operation_mode": {
         "name": "Solar-Laderegler MPPT-Betriebsmodus"
@@ -801,16 +681,13 @@
         "name": "Solar-Laderegler Zustand"
       },
       "solarcharger_time_in_absorption_today": {
-        "name": "Solar-Laderegler Zeit in Absorption heute",
-        "unit_of_measurement": "s"
+        "name": "Solar-Laderegler Zeit in Absorption heute"
       },
       "solarcharger_time_in_bulk_today": {
-        "name": "Solar-Laderegler Zeit in Bulk heute",
-        "unit_of_measurement": "s"
+        "name": "Solar-Laderegler Zeit in Bulk heute"
       },
       "solarcharger_time_in_float_today": {
-        "name": "Solar-Laderegler Zeit in Float heute",
-        "unit_of_measurement": "s"
+        "name": "Solar-Laderegler Zeit in Float heute"
       },
       "solarcharger_tracker_tracker_name": {
         "name": "PV-Tracker {tracker} Name"
@@ -819,62 +696,49 @@
         "name": "PV-Tracker {tracker} Betriebsmodus"
       },
       "solarcharger_tracker_tracker_power": {
-        "name": "PV-Tracker {tracker} Leistung",
-        "unit_of_measurement": "W"
+        "name": "PV-Tracker {tracker} Leistung"
       },
       "solarcharger_tracker_tracker_voltage": {
-        "name": "PV-Tracker {tracker} Spannung",
-        "unit_of_measurement": "V"
+        "name": "PV-Tracker {tracker} Spannung"
       },
       "solarcharger_voltage": {
-        "name": "PV-Busspannung",
-        "unit_of_measurement": "V"
+        "name": "PV-Busspannung"
       },
       "solarcharger_yield_power": {
-        "name": "PV-Ertragsleistung",
-        "unit_of_measurement": "W"
+        "name": "PV-Ertragsleistung"
       },
       "solarcharger_yield_today": {
-        "name": "Ertrag heute",
-        "unit_of_measurement": "kWh"
+        "name": "Ertrag heute"
       },
       "solarcharger_yield_total": {
-        "name": "Gesamtertrag",
-        "unit_of_measurement": "kWh"
+        "name": "Gesamtertrag"
       },
       "solarcharger_yield_yesterday": {
-        "name": "Ertrag gestern",
-        "unit_of_measurement": "kWh"
+        "name": "Ertrag gestern"
       },
       "switch_output_custom_name": {
         "name": "Ausgang {output} Benutzerdefinierter Name"
       },
       "switch_output_dimming": {
-        "name": "Ausgang {output} Dimmung",
-        "unit_of_measurement": "%"
+        "name": "Ausgang {output} Dimmung"
       },
       "system_ac_active_input_source": {
         "name": "Aktive AC-Eingangsquelle"
       },
       "system_ac_export_limit": {
-        "name": "AC-Exportlimit",
-        "unit_of_measurement": "A"
+        "name": "AC-Exportlimit"
       },
       "system_ac_input_limit": {
-        "name": "AC-Einspeiselimit",
-        "unit_of_measurement": "A"
+        "name": "AC-Einspeiselimit"
       },
       "system_ac_loads_phase": {
-        "name": "AC-Lasten auf {phase}",
-        "unit_of_measurement": "W"
+        "name": "AC-Lasten auf {phase}"
       },
       "system_ac_power_set_point": {
-        "name": "AC-Leistungs-Sollwert",
-        "unit_of_measurement": "W"
+        "name": "AC-Leistungs-Sollwert"
       },
       "system_consumption_current_phase": {
-        "name": "Verbrauch Strom {phase}",
-        "unit_of_measurement": "A"
+        "name": "Verbrauch Strom {phase}"
       },
       "system_consumption_on_output_phases": {
         "name": "Verbrauch an Output-Phasen",
@@ -885,40 +749,31 @@
         "unit_of_measurement": "phases"
       },
       "system_consumption_power_phase": {
-        "name": "Verbrauch Leistung {phase}",
-        "unit_of_measurement": "W"
+        "name": "Verbrauch Leistung {phase}"
       },
       "system_critical_loads_phase": {
-        "name": "Kritische Lasten auf {phase}",
-        "unit_of_measurement": "W"
+        "name": "Kritische Lasten auf {phase}"
       },
       "system_dc_battery_current": {
-        "name": "DC-Batteriestrom",
-        "unit_of_measurement": "A"
+        "name": "DC-Batteriestrom"
       },
       "system_dc_battery_power": {
-        "name": "DC-Batterieleistung",
-        "unit_of_measurement": "W"
+        "name": "DC-Batterieleistung"
       },
       "system_dc_battery_soc": {
-        "name": "DC-Batterieladung",
-        "unit_of_measurement": "%"
+        "name": "DC-Batterieladung"
       },
       "system_dc_battery_voltage": {
-        "name": "DC-Batteriespannung",
-        "unit_of_measurement": "V"
+        "name": "DC-Batteriespannung"
       },
       "system_dc_consumption": {
-        "name": "DC-Verbrauch",
-        "unit_of_measurement": "W"
+        "name": "DC-Verbrauch"
       },
       "system_dc_pv_power": {
-        "name": "PV-Leistung",
-        "unit_of_measurement": "W"
+        "name": "PV-Leistung"
       },
       "system_dynamicess_available_overhead": {
-        "name": "Dynamisches ESS: Verfügliche Reserve",
-        "unit_of_measurement": "W"
+        "name": "Dynamisches ESS: Verfügliche Reserve"
       },
       "system_dynamicess_error": {
         "name": "Dynamisches ESS: Fehler"
@@ -930,8 +785,7 @@
         "name": "Dynamisches ESS: Letzter geplanter Start"
       },
       "system_dynamicess_minimum_soc": {
-        "name": "Dynamisches ESS: Mindest-SoC",
-        "unit_of_measurement": "%"
+        "name": "Dynamisches ESS: Mindest-SoC"
       },
       "system_dynamicess_reactive_strategy": {
         "name": "Dynamisches ESS: Reaktive Strategie"
@@ -947,62 +801,51 @@
         "name": "Dynamisches ESS: Strategie"
       },
       "system_dynamicess_target_soc": {
-        "name": "Dynamisches ESS: Ziel-SoC (Ladestand)",
-        "unit_of_measurement": "%"
+        "name": "Dynamisches ESS: Ziel-SoC (Ladestand)"
       },
       "system_ess_batterylife_state": {
         "name": "ESS Akkulaufzeit-Zustand"
       },
       "system_ess_max_charge_current": {
-        "name": "ESS max. Ladestrom",
-        "unit_of_measurement": "A"
+        "name": "ESS max. Ladestrom"
       },
       "system_ess_max_charge_voltage": {
-        "name": "ESS max. Ladespannung",
-        "unit_of_measurement": "V"
+        "name": "ESS max. Ladespannung"
       },
       "system_ess_max_feed_in_power": {
-        "name": "ESS max. Einspeiseleistung",
-        "unit_of_measurement": "W"
+        "name": "ESS max. Einspeiseleistung"
       },
       "system_ess_max_inverter_power_limit": {
-        "name": "ESS max. Wechselrichterleistung",
-        "unit_of_measurement": "W"
+        "name": "ESS max. Wechselrichterleistung"
       },
       "system_ess_min_soc_limit": {
-        "name": "ESS Mindest-SoC-Grenze",
-        "unit_of_measurement": "%"
+        "name": "ESS Mindest-SoC-Grenze"
       },
       "system_ess_mode": {
         "name": "ESS-Modus (Hub4)"
       },
       "system_generator_load_phase": {
-        "name": "Generatorlast {phase}",
-        "unit_of_measurement": "W"
+        "name": "Generatorlast {phase}"
       },
       "system_grid_current_phase": {
-        "name": "Netz Strom {phase}",
-        "unit_of_measurement": "A"
+        "name": "Netz Strom {phase}"
       },
       "system_grid_phases": {
         "name": "Netzphasen",
         "unit_of_measurement": "phases"
       },
       "system_grid_power_phase": {
-        "name": "Netz Leistung {phase}",
-        "unit_of_measurement": "W"
+        "name": "Netz Leistung {phase}"
       },
       "system_pv_on_output_current_phase": {
-        "name": "PV an Output Strom {phase}",
-        "unit_of_measurement": "A"
+        "name": "PV an Output Strom {phase}"
       },
       "system_pv_on_output_phases": {
         "name": "PV an Output-Phasen",
         "unit_of_measurement": "phases"
       },
       "system_pv_on_output_power_phase": {
-        "name": "PV an Output Leistung {phase}",
-        "unit_of_measurement": "W"
+        "name": "PV an Output Leistung {phase}"
       },
       "system_relay_relay_custom_name": {
         "name": "Relais {relay} Benutzerdefinierter Name"
@@ -1011,35 +854,28 @@
         "name": "Systemzustand"
       },
       "tank_battery_voltage": {
-        "name": "Tank-Sensor Batteriespannung",
-        "unit_of_measurement": "V"
+        "name": "Tank-Sensor Batteriespannung"
       },
       "tank_fluid_type": {
         "name": "Flüssigkeitstyp"
       },
       "tank_level": {
-        "name": "Füllstand",
-        "unit_of_measurement": "%"
+        "name": "Füllstand"
       },
       "tank_remaining": {
-        "name": "Verbleibend",
-        "unit_of_measurement": "L"
+        "name": "Verbleibend"
       },
       "tank_temperature": {
-        "name": "Temperatur",
-        "unit_of_measurement": "°C"
+        "name": "Temperatur"
       },
       "temperature_battery_voltage": {
-        "name": "Temperatur-Sensor Batteriespannung",
-        "unit_of_measurement": "V"
+        "name": "Temperatur-Sensor Batteriespannung"
       },
       "temperature_humidity": {
-        "name": "Luftfeuchte",
-        "unit_of_measurement": "%"
+        "name": "Luftfeuchte"
       },
       "temperature_offset": {
-        "name": "Temperatur-Offset",
-        "unit_of_measurement": "°C"
+        "name": "Temperatur-Offset"
       },
       "temperature_scale": {
         "name": "Temperatur-Skalierungsfaktor",
@@ -1049,75 +885,58 @@
         "name": "Temperatur-Sensorstatus"
       },
       "temperature_temperature": {
-        "name": "Temperatur",
-        "unit_of_measurement": "°C"
+        "name": "Temperatur"
       },
       "temperature_type": {
         "name": "Temperatur-Sensortyp"
       },
       "transfer_switch_generator_current_limit": {
-        "name": "Generator AC-Stromlimit",
-        "unit_of_measurement": "A"
+        "name": "Generator AC-Stromlimit"
       },
       "vebus_device_device_number_input_power_l1": {
-        "name": "VE.Bus Gerät {device_number} Eingangsleistung L1",
-        "unit_of_measurement": "W"
+        "name": "VE.Bus Gerät {device_number} Eingangsleistung L1"
       },
       "vebus_device_device_number_input_power_phase": {
-        "name": "VE.Bus Gerät {device_number} Eingangsleistung Phase {phase}",
-        "unit_of_measurement": "W"
+        "name": "VE.Bus Gerät {device_number} Eingangsleistung Phase {phase}"
       },
       "vebus_device_device_number_inverted_power": {
-        "name": "VE.Bus Gerät {device_number} Inverter-Leistung",
-        "unit_of_measurement": "W"
+        "name": "VE.Bus Gerät {device_number} Inverter-Leistung"
       },
       "vebus_device_device_number_output_power_l1": {
-        "name": "VE.Bus Gerät {device_number} Ausgangsleistung L1",
-        "unit_of_measurement": "W"
+        "name": "VE.Bus Gerät {device_number} Ausgangsleistung L1"
       },
       "vebus_device_device_number_output_power_phase": {
-        "name": "VE.Bus Gerät {device_number} Ausgangsleistung Phase {phase}",
-        "unit_of_measurement": "W"
+        "name": "VE.Bus Gerät {device_number} Ausgangsleistung Phase {phase}"
       },
       "vebus_energy_ac_in1_to_ac_out": {
-        "name": "Energie von AcIn1 zu AcOut",
-        "unit_of_measurement": "kWh"
+        "name": "Energie von AcIn1 zu AcOut"
       },
       "vebus_energy_ac_in1_to_inverter": {
-        "name": "Energie von AcIn1 zum Wechselrichter",
-        "unit_of_measurement": "kWh"
+        "name": "Energie von AcIn1 zum Wechselrichter"
       },
       "vebus_energy_ac_in2_to_ac_out": {
-        "name": "Energie von AcIn2 zu AcOut",
-        "unit_of_measurement": "kWh"
+        "name": "Energie von AcIn2 zu AcOut"
       },
       "vebus_energy_ac_in2_to_inverter": {
-        "name": "Energie von AcIn2 zum Wechselrichter",
-        "unit_of_measurement": "kWh"
+        "name": "Energie von AcIn2 zum Wechselrichter"
       },
       "vebus_energy_ac_out_to_ac_in1": {
-        "name": "Energie von AcOut zu AcIn1",
-        "unit_of_measurement": "kWh"
+        "name": "Energie von AcOut zu AcIn1"
       },
       "vebus_energy_ac_out_to_ac_in2": {
-        "name": "Energie von AcOut zu AcIn2",
-        "unit_of_measurement": "kWh"
+        "name": "Energie von AcOut zu AcIn2"
       },
       "vebus_energy_inverter_to_ac_in1": {
-        "name": "Energie vom Wechselrichter zu AcIn1",
-        "unit_of_measurement": "kWh"
+        "name": "Energie vom Wechselrichter zu AcIn1"
       },
       "vebus_energy_inverter_to_ac_in2": {
-        "name": "Energie vom Wechselrichter zu AcIn2",
-        "unit_of_measurement": "kWh"
+        "name": "Energie vom Wechselrichter zu AcIn2"
       },
       "vebus_energy_inverter_to_ac_out": {
-        "name": "Energie vom Wechselrichter zu AcOut",
-        "unit_of_measurement": "kWh"
+        "name": "Energie vom Wechselrichter zu AcOut"
       },
       "vebus_energy_out_to_inverter": {
-        "name": "Energie vom Ausgang zum Wechselrichter",
-        "unit_of_measurement": "kWh"
+        "name": "Energie vom Ausgang zum Wechselrichter"
       },
       "vebus_inverter_active_input": {
         "name": "Wechselrichter aktiver AC-Eingang"
@@ -1153,55 +972,43 @@
         "name": "Alarm: Spannungssensor"
       },
       "vebus_inverter_current_limit": {
-        "name": "Wechselrichter Stromlimit",
-        "unit_of_measurement": "A"
+        "name": "Wechselrichter Stromlimit"
       },
       "vebus_inverter_dc_current": {
-        "name": "Wechselrichter DC-Strom",
-        "unit_of_measurement": "A"
+        "name": "Wechselrichter DC-Strom"
       },
       "vebus_inverter_dc_power": {
-        "name": "Wechselrichter DC-Leistung",
-        "unit_of_measurement": "W"
+        "name": "Wechselrichter DC-Leistung"
       },
       "vebus_inverter_input_apparent_power_phase": {
-        "name": "Wechselrichter Eingangs-Scheinleistung {phase}",
-        "unit_of_measurement": "VA"
+        "name": "Wechselrichter Eingangs-Scheinleistung {phase}"
       },
       "vebus_inverter_input_frequency_phase": {
-        "name": "Wechselrichter Eingangsfrequenz {phase}",
-        "unit_of_measurement": "Hz"
+        "name": "Wechselrichter Eingangsfrequenz {phase}"
       },
       "vebus_inverter_input_power_phase": {
-        "name": "Wechselrichter Eingangsleistung {phase}",
-        "unit_of_measurement": "W"
+        "name": "Wechselrichter Eingangsleistung {phase}"
       },
       "vebus_inverter_input_voltage_phase": {
-        "name": "Wechselrichter Eingangsspannung {phase}",
-        "unit_of_measurement": "V"
+        "name": "Wechselrichter Eingangsspannung {phase}"
       },
       "vebus_inverter_mode": {
         "name": "Wechselrichtermodus"
       },
       "vebus_inverter_output_apparent_power_phase": {
-        "name": "Wechselrichter Ausgangs-Scheinleistung {phase}",
-        "unit_of_measurement": "VA"
+        "name": "Wechselrichter Ausgangs-Scheinleistung {phase}"
       },
       "vebus_inverter_output_current_phase": {
-        "name": "Wechselrichter Ausgangsstrom {phase}",
-        "unit_of_measurement": "A"
+        "name": "Wechselrichter Ausgangsstrom {phase}"
       },
       "vebus_inverter_output_frequency_phase": {
-        "name": "Wechselrichter Ausgangsfrequenz {phase}",
-        "unit_of_measurement": "Hz"
+        "name": "Wechselrichter Ausgangsfrequenz {phase}"
       },
       "vebus_inverter_output_power_phase": {
-        "name": "Wechselrichter Ausgangsleistung {phase}",
-        "unit_of_measurement": "W"
+        "name": "Wechselrichter Ausgangsleistung {phase}"
       },
       "vebus_inverter_output_voltage_phase": {
-        "name": "Wechselrichter Ausgangsspannung {phase}",
-        "unit_of_measurement": "V"
+        "name": "Wechselrichter Ausgangsspannung {phase}"
       },
       "vebus_inverter_state": {
         "name": "Wechselrichterzustand"
