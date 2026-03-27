@@ -1,9 +1,4 @@
-"""Support for Victron Venus sensors.
-
-Light-weight platform file registering sensor entities. The actual entity
-implementation is in this file; import of `Hub` is type-only to avoid a
-runtime circular dependency with `hub.py`.
-"""
+"""Support for Victron GX sensors."""
 
 import logging
 from typing import Any
@@ -13,29 +8,49 @@ from victron_mqtt import (
     FormulaMetric as VictronFormulaMetric,
     Metric as VictronVenusMetric,
     MetricKind,
+    MetricType,
+    VictronEnum,
 )
-from victron_mqtt.constants import VictronEnum
 
-from homeassistant.components.sensor import RestoreSensor, SensorStateClass
+from homeassistant.components.sensor import (
+    SensorDeviceClass,
+    RestoreSensor,
+    SensorStateClass,
+)
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
+from .const import METRIC_NATURE_TO_STATE_CLASS
 from .entity import VictronBaseEntity
-from .hub import Hub, VictronGxConfigEntry
-
-PARALLEL_UPDATES = 0  # There is no I/O in the entity itself.
+from .hub import VictronGxConfigEntry
 
 _LOGGER = logging.getLogger(__name__)
 
+PARALLEL_UPDATES = 0  # There is no I/O in the entity itself.
+
+METRIC_TYPE_TO_DEVICE_CLASS: dict[MetricType, SensorDeviceClass] = {
+    MetricType.POWER: SensorDeviceClass.POWER,
+    MetricType.APPARENT_POWER: SensorDeviceClass.APPARENT_POWER,
+    MetricType.ENERGY: SensorDeviceClass.ENERGY,
+    MetricType.VOLTAGE: SensorDeviceClass.VOLTAGE,
+    MetricType.CURRENT: SensorDeviceClass.CURRENT,
+    MetricType.FREQUENCY: SensorDeviceClass.FREQUENCY,
+    MetricType.ELECTRIC_STORAGE_PERCENTAGE: SensorDeviceClass.BATTERY,
+    MetricType.TEMPERATURE: SensorDeviceClass.TEMPERATURE,
+    MetricType.SPEED: SensorDeviceClass.SPEED,
+    MetricType.LIQUID_VOLUME: SensorDeviceClass.VOLUME_STORAGE,
+    MetricType.DURATION: SensorDeviceClass.DURATION,
+    MetricType.ENUM: SensorDeviceClass.ENUM,
+}
 
 async def async_setup_entry(
     hass: HomeAssistant,
     config_entry: VictronGxConfigEntry,
     async_add_entities: AddConfigEntryEntitiesCallback,
 ) -> None:
-    """Set up Victron Venus sensors from a config entry."""
-    hub: Hub = config_entry.runtime_data
+    """Set up Victron GX sensors from a config entry."""
+    hub = config_entry.runtime_data
 
     def on_new_metric(
         device: VictronVenusDevice,
@@ -60,7 +75,7 @@ async def async_setup_entry(
 
 
 class VictronSensor(VictronBaseEntity, RestoreSensor):
-    """Implementation of a Victron Venus sensor."""
+    """Implementation of a Victron GX sensor."""
 
     _baseline: float | None = None
 
@@ -76,14 +91,26 @@ class VictronSensor(VictronBaseEntity, RestoreSensor):
         super().__init__(
             device, metric, device_info, "sensor", simple_naming, installation_id
         )
+        self._attr_device_class = METRIC_TYPE_TO_DEVICE_CLASS.get(metric.metric_type)
+        # Enum sensors must not have a state class
+        if self._attr_device_class == SensorDeviceClass.ENUM:
+            self._attr_options = metric.enum_values
+        else:
+            self._attr_state_class = METRIC_NATURE_TO_STATE_CLASS.get(
+                metric.metric_nature
+            )
+        # Only set native_unit_of_measurement when a device_class is present.
+        # Entities without a device_class get their display unit from
+        # the translation files instead.
+        if self._attr_device_class is not None:
+            self._attr_native_unit_of_measurement = metric.unit_of_measurement
+        self._attr_native_value = VictronSensor._normalize_value(metric.value)
 
     @callback
-    def _on_update_task(self, value: Any) -> None:
+    def _on_update_cb(self, value: Any) -> None:
         if self._baseline is not None:
             value += self._baseline
         value = self._normalize_value(value)
-        if self._attr_native_value == value:
-            return
         self._attr_native_value = value
         self.async_write_ha_state()
 

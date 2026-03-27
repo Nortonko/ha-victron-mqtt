@@ -1,10 +1,12 @@
 """Test the Victron GX MQTT Hub class."""
 
+import asyncio
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 from syrupy.assertion import SnapshotAssertion
 from victron_mqtt import (
+    AuthenticationError,
     CannotConnectError,
     Device as VictronVenusDevice,
     Hub as VictronVenusHub,
@@ -316,7 +318,7 @@ async def test_binary_sensor(
     # Inject a binary sensor metric (evcharger connected state)
     await inject_message(victron_hub, "N/123/evcharger/0/Connected", "{\"value\": 1}")
     await finalize_injection(victron_hub)
-
+    
     # Verify entity was created by checking entity registry
     entity_registry = er.async_get(hass)
     entities = er.async_entries_for_config_entry(
@@ -361,7 +363,6 @@ async def test_select(
     await inject_message(victron_hub, "N/123/evcharger/0/Mode", "{\"value\": 1}")
     await finalize_injection(victron_hub)
 
-    # Inject a button metric (platform device reboot) - GenericOnOff enum value    # Verify entity was created by checking entity registry
     entity_registry = er.async_get(hass)
     entities = er.async_entries_for_config_entry(
         entity_registry, mock_config_entry.entry_id
@@ -484,3 +485,446 @@ async def test_sensor_with_baseline(
     # Should have created two entity
     assert len(entities) == 2
     assert entities == snapshot
+
+
+@patch('victron_mqtt.formula_common.time.monotonic')
+async def test_sensor_baseline_invalid_value(
+    mock_time: MagicMock,
+    hass: HomeAssistant,
+    init_integration,
+) -> None:
+    """Test that baseline restore handles invalid (non-numeric) last_state gracefully."""
+    victron_hub, mock_config_entry = init_integration
+    mock_time.return_value = 0
+
+    entity_id = "sensor.victron_venus_pv_energy"
+
+    # Mock the restore cache with an invalid (non-numeric) state
+    mock_restore_cache(hass, [State(entity_id, "not_a_number")])
+
+    await inject_message(victron_hub, "N/123/system/0/Dc/Pv/Power", '{"value": 1000}', mock_time)
+    await finalize_injection(victron_hub, disconnect=False, mock_time=mock_time)
+    mock_time.return_value = 15
+    await inject_message(victron_hub, "N/123/system/0/Dc/Pv/Power", '{"value": 4000}', mock_time)
+
+    entity_registry = er.async_get(hass)
+    entities = er.async_entries_for_config_entry(
+        entity_registry, mock_config_entry.entry_id
+    )
+    energy_entities = [e for e in entities if "energy" in e.entity_id]
+    assert len(energy_entities) > 0
+
+    # Should fall through to ValueError branch; value is metric's own value
+    state = hass.states.get(energy_entities[0].entity_id)
+    assert state is not None
+    # Baseline restore failed, so value is just the metric's computed value
+    assert isinstance(float(state.state), float)
+
+
+async def test_button_press(
+    hass: HomeAssistant,
+    init_integration,
+) -> None:
+    """Test pressing a button entity calls set on the metric."""
+    victron_hub, mock_config_entry = init_integration
+
+    await inject_message(victron_hub, "N/123/platform/0/Device/Reboot", '{"value": 1}')
+    await finalize_injection(victron_hub)
+    await hass.async_block_till_done()
+
+    entity_registry = er.async_get(hass)
+    entities = er.async_entries_for_config_entry(
+        entity_registry, mock_config_entry.entry_id
+    )
+    button_entities = [e for e in entities if "button." in e.entity_id]
+    assert len(button_entities) > 0
+    entity_id = button_entities[0].entity_id
+
+    # Get the entity object to spy on _metric.set
+    entity = hass.data["entity_components"]["button"].get_entity(entity_id)
+    assert entity is not None
+    with patch.object(entity._metric, "set", wraps=entity._metric.set) as mock_set:
+        # Press the button
+        await hass.services.async_call(
+            "button", "press", {"entity_id": entity_id}, blocking=True
+        )
+        await hass.async_block_till_done()
+        mock_set.assert_called_once_with("on")
+
+
+async def test_switch_turn_on_off(
+    hass: HomeAssistant,
+    init_integration,
+) -> None:
+    """Test turning a switch on and off."""
+    victron_hub, mock_config_entry = init_integration
+
+    await inject_message(victron_hub, "N/123/generator/0/ManualStart", '{"value": 0}')
+    await finalize_injection(victron_hub)
+    await hass.async_block_till_done()
+
+    entity_registry = er.async_get(hass)
+    entities = er.async_entries_for_config_entry(
+        entity_registry, mock_config_entry.entry_id
+    )
+    switch_entities = [e for e in entities if "switch." in e.entity_id]
+    assert len(switch_entities) > 0
+    entity_id = switch_entities[0].entity_id
+
+    # Get the entity object to spy on _metric.set
+    entity = hass.data["entity_components"]["switch"].get_entity(entity_id)
+    assert entity is not None
+    with patch.object(entity._metric, "set", wraps=entity._metric.set) as mock_set:
+        # Turn on
+        await hass.services.async_call(
+            "switch", "turn_on", {"entity_id": entity_id}, blocking=True
+        )
+        await hass.async_block_till_done()
+        mock_set.assert_called_once_with("on")
+
+        mock_set.reset_mock()
+
+        # Turn off
+        await hass.services.async_call(
+            "switch", "turn_off", {"entity_id": entity_id}, blocking=True
+        )
+        await hass.async_block_till_done()
+        mock_set.assert_called_once_with("off")
+
+
+async def test_select_option(
+    hass: HomeAssistant,
+    init_integration,
+) -> None:
+    """Test selecting an option on a select entity."""
+    victron_hub, mock_config_entry = init_integration
+
+    await inject_message(victron_hub, "N/123/evcharger/0/Mode", '{"value": 1}')
+    await finalize_injection(victron_hub)
+    await hass.async_block_till_done()
+
+    entity_registry = er.async_get(hass)
+    entities = er.async_entries_for_config_entry(
+        entity_registry, mock_config_entry.entry_id
+    )
+    select_entities = [e for e in entities if "select." in e.entity_id]
+    assert len(select_entities) > 0
+    entity_id = select_entities[0].entity_id
+
+    state = hass.states.get(entity_id)
+    assert state is not None
+
+    # Select a valid option
+    options = state.attributes.get("options", [])
+    assert len(options) > 0
+
+    # Get the entity object to spy on _metric.set
+    entity = hass.data["entity_components"]["select"].get_entity(entity_id)
+    assert entity is not None
+    with patch.object(entity._metric, "set", wraps=entity._metric.set) as mock_set:
+        await hass.services.async_call(
+            "select", "select_option", {"entity_id": entity_id, "option": options[0]}, blocking=True
+        )
+        await hass.async_block_till_done()
+        mock_set.assert_called_once_with(options[0])
+
+
+async def test_number_set_value(
+    hass: HomeAssistant,
+    init_integration,
+) -> None:
+    """Test setting a value on a number entity."""
+    victron_hub, mock_config_entry = init_integration
+
+    await inject_message(victron_hub, "N/123/evcharger/0/SetCurrent", '{"value": 16.0}')
+    await finalize_injection(victron_hub)
+    await hass.async_block_till_done()
+
+    entity_registry = er.async_get(hass)
+    entities = er.async_entries_for_config_entry(
+        entity_registry, mock_config_entry.entry_id
+    )
+    number_entities = [e for e in entities if "number." in e.entity_id]
+    assert len(number_entities) > 0
+    entity_id = number_entities[0].entity_id
+
+    state = hass.states.get(entity_id)
+    assert state is not None
+    assert float(state.state) == 16.0
+
+    # Update the value via MQTT
+    await inject_message(victron_hub, "N/123/evcharger/0/SetCurrent", '{"value": 20.0}')
+    await hass.async_block_till_done()
+    state = hass.states.get(entity_id)
+    assert float(state.state) == 20.0
+
+    # Set value via service
+    entity = hass.data["entity_components"]["number"].get_entity(entity_id)
+    assert entity is not None
+    with patch.object(entity._metric, "set", wraps=entity._metric.set) as mock_set:
+        await hass.services.async_call(
+            "number", "set_value", {"entity_id": entity_id, "value": 10.0}, blocking=True
+        )
+        await hass.async_block_till_done()
+        mock_set.assert_called_once_with(10.0)
+
+
+async def test_time_set_value(
+    hass: HomeAssistant,
+    init_integration,
+) -> None:
+    """Test setting a time value and verifying time conversion."""
+    victron_hub, mock_config_entry = init_integration
+
+    # 1380 minutes = 23:00
+    await inject_message(victron_hub, "N/123/settings/0/Settings/CGwacs/BatteryLife/Schedule/Charge/0/Start", '{"value": 1380}')
+    await finalize_injection(victron_hub)
+    await hass.async_block_till_done()
+
+    entity_registry = er.async_get(hass)
+    entities = er.async_entries_for_config_entry(
+        entity_registry, mock_config_entry.entry_id
+    )
+    time_entities = [e for e in entities if "time." in e.entity_id]
+    assert len(time_entities) > 0
+    entity_id = time_entities[0].entity_id
+
+    state = hass.states.get(entity_id)
+    assert state is not None
+
+    # Update value via MQTT (triggers _on_update_cb)
+    await inject_message(victron_hub, "N/123/settings/0/Settings/CGwacs/BatteryLife/Schedule/Charge/0/Start", '{"value": 480}')
+    await hass.async_block_till_done()
+    state = hass.states.get(entity_id)
+    assert state is not None
+
+    # Set value via service (triggers set_value)
+    entity = hass.data["entity_components"]["time"].get_entity(entity_id)
+    assert entity is not None
+    with patch.object(entity._metric, "set", wraps=entity._metric.set) as mock_set:
+        await hass.services.async_call(
+            "time", "set_value", {"entity_id": entity_id, "time": "12:30:00"}, blocking=True
+        )
+        await hass.async_block_till_done()
+        mock_set.assert_called_once_with(750)  # 12*60 + 30 = 750 minutes
+
+
+async def test_hub_auth_error(
+    hass: HomeAssistant, mock_config_entry
+) -> None:
+    """Test hub start with authentication error raises ConfigEntryAuthFailed."""
+    mock_config_entry.add_to_hass(hass)
+
+    with patch(
+        "custom_components.victron_mqtt.hub.VictronVenusHub.connect",
+        side_effect=AuthenticationError("Auth failed"),
+    ):
+        await hass.config_entries.async_setup(mock_config_entry.entry_id)
+        await hass.async_block_till_done()
+
+        # Auth failures put the entry in SETUP_ERROR state
+        assert mock_config_entry.state is ConfigEntryState.SETUP_ERROR
+
+
+async def test_publish_service(
+    hass: HomeAssistant,
+    init_integration,
+) -> None:
+    """Test the publish service calls hub.publish."""
+    victron_hub, mock_config_entry = init_integration
+
+    await inject_message(victron_hub, "N/123/battery/0/Dc/0/Voltage", '{"value": 12.6}')
+    await finalize_injection(victron_hub)
+    await hass.async_block_till_done()
+
+    # Get the Hub to spy on publish
+    hub = mock_config_entry.runtime_data
+    with patch.object(hub, "publish", wraps=hub.publish) as mock_publish:
+        await hass.services.async_call(
+            DOMAIN,
+            "publish",
+            {
+                "metric_id": "generator_service_counter_reset",
+                "device_id": "261",
+                "value": "1",
+            },
+            blocking=True,
+        )
+        await hass.async_block_till_done()
+        mock_publish.assert_called_once_with(
+            "generator_service_counter_reset", "261", "1"
+        )
+
+
+async def test_publish_service_missing_fields(
+    hass: HomeAssistant,
+    init_integration,
+) -> None:
+    """Test the publish service raises errors for missing fields."""
+    from homeassistant.exceptions import HomeAssistantError
+
+    victron_hub, mock_config_entry = init_integration
+
+    await inject_message(victron_hub, "N/123/battery/0/Dc/0/Voltage", '{"value": 12.6}')
+    await finalize_injection(victron_hub)
+    await hass.async_block_till_done()
+
+    # Missing metric_id
+    with pytest.raises(HomeAssistantError, match="metric_id is required"):
+        await hass.services.async_call(
+            DOMAIN,
+            "publish",
+            {"device_id": "261", "value": "1"},
+            blocking=True,
+        )
+
+    # Missing device_id
+    with pytest.raises(HomeAssistantError, match="device_id is required"):
+        await hass.services.async_call(
+            DOMAIN,
+            "publish",
+            {"metric_id": "test_metric", "value": "1"},
+            blocking=True,
+        )
+
+
+async def test_binary_sensor_update(
+    hass: HomeAssistant,
+    init_integration,
+) -> None:
+    """Test binary sensor state updates via MQTT (_on_update_cb)."""
+    victron_hub, mock_config_entry = init_integration
+
+    await inject_message(victron_hub, "N/123/evcharger/0/Connected", '{"value": 1}')
+    await finalize_injection(victron_hub, disconnect=False)
+    await hass.async_block_till_done()
+
+    entity_registry = er.async_get(hass)
+    entities = er.async_entries_for_config_entry(
+        entity_registry, mock_config_entry.entry_id
+    )
+    binary_entities = [e for e in entities if "binary_sensor." in e.entity_id]
+    assert len(binary_entities) > 0
+    entity_id = binary_entities[0].entity_id
+
+    # Update via MQTT - triggers _on_update_cb
+    await inject_message(victron_hub, "N/123/evcharger/0/Connected", '{"value": 0}')
+    await hass.async_block_till_done()
+
+    state = hass.states.get(entity_id)
+    assert state is not None
+
+
+async def test_enum_sensor(
+    hass: HomeAssistant,
+    init_integration,
+) -> None:
+    """Test enum sensor creation and update (covers enum options and VictronEnum normalization)."""
+    victron_hub, mock_config_entry = init_integration
+
+    await inject_message(victron_hub, "N/123/system/0/SystemState/State", '{"value": 1}')
+    await finalize_injection(victron_hub, disconnect=False)
+    await hass.async_block_till_done()
+
+    entity_registry = er.async_get(hass)
+    entities = er.async_entries_for_config_entry(
+        entity_registry, mock_config_entry.entry_id
+    )
+    # Find the system state entity (enum sensor)
+    state_entities = [e for e in entities if "state" in e.entity_id.lower()]
+    assert len(state_entities) > 0
+    entity_id = state_entities[0].entity_id
+
+    state = hass.states.get(entity_id)
+    assert state is not None
+    assert state.attributes.get("options") is not None
+
+    # Update via MQTT to trigger _on_update_cb with VictronEnum
+    await inject_message(victron_hub, "N/123/system/0/SystemState/State", '{"value": 3}')
+    await hass.async_block_till_done()
+
+    state = hass.states.get(entity_id)
+    assert state is not None
+
+
+async def test_number_update_cb(
+    hass: HomeAssistant,
+    init_integration,
+) -> None:
+    """Test number entity state updates via MQTT (_on_update_cb)."""
+    victron_hub, mock_config_entry = init_integration
+
+    await inject_message(victron_hub, "N/123/evcharger/0/SetCurrent", '{"value": 16.0}')
+    await finalize_injection(victron_hub, disconnect=False)
+    await hass.async_block_till_done()
+
+    entity_registry = er.async_get(hass)
+    entities = er.async_entries_for_config_entry(
+        entity_registry, mock_config_entry.entry_id
+    )
+    number_entities = [e for e in entities if "number." in e.entity_id]
+    assert len(number_entities) > 0
+    entity_id = number_entities[0].entity_id
+
+    # Update via MQTT
+    await inject_message(victron_hub, "N/123/evcharger/0/SetCurrent", '{"value": 32.0}')
+    await hass.async_block_till_done()
+
+    state = hass.states.get(entity_id)
+    assert state is not None
+    assert float(state.state) == 32.0
+
+
+async def test_select_update_cb(
+    hass: HomeAssistant,
+    init_integration,
+) -> None:
+    """Test select entity state updates via MQTT (_on_update_cb and _map_value_to_state)."""
+    victron_hub, mock_config_entry = init_integration
+
+    await inject_message(victron_hub, "N/123/evcharger/0/Mode", '{"value": 1}')
+    await finalize_injection(victron_hub, disconnect=False)
+    await hass.async_block_till_done()
+
+    entity_registry = er.async_get(hass)
+    entities = er.async_entries_for_config_entry(
+        entity_registry, mock_config_entry.entry_id
+    )
+    select_entities = [e for e in entities if "select." in e.entity_id]
+    assert len(select_entities) > 0
+    entity_id = select_entities[0].entity_id
+
+    state = hass.states.get(entity_id)
+    assert state is not None
+
+    # Update via MQTT to trigger _on_update_cb
+    await inject_message(victron_hub, "N/123/evcharger/0/Mode", '{"value": 0}')
+    await hass.async_block_till_done()
+
+    state = hass.states.get(entity_id)
+    assert state is not None
+
+
+async def test_number_with_step(
+    hass: HomeAssistant,
+    init_integration,
+) -> None:
+    """Test number entity with step attribute from metric."""
+    victron_hub, mock_config_entry = init_integration
+
+    await inject_message(victron_hub, "N/123/settings/0/Settings/SystemSetup/MaxChargeVoltage", '{"value": 57.6}')
+    await finalize_injection(victron_hub)
+    await hass.async_block_till_done()
+
+    entity_registry = er.async_get(hass)
+    entities = er.async_entries_for_config_entry(
+        entity_registry, mock_config_entry.entry_id
+    )
+    number_entities = [e for e in entities if "number." in e.entity_id]
+    assert len(number_entities) > 0
+    entity_id = number_entities[0].entity_id
+
+    state = hass.states.get(entity_id)
+    assert state is not None
+    assert float(state.state) == 57.6
+    assert state.attributes.get("step") == 0.1

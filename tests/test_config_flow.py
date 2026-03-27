@@ -622,3 +622,101 @@ async def test_reauth_flow_invalid_auth(
 
     assert result["type"] is FlowResultType.ABORT
     assert result["reason"] == "reauth_successful"
+
+
+async def test_user_flow_auth_error(
+    hass: HomeAssistant, mock_victron_hub: MagicMock
+) -> None:
+    """Test the user flow handles authentication errors."""
+    result = await hass.config_entries.flow.async_init(
+        DOMAIN, context={"source": SOURCE_USER}
+    )
+
+    mock_victron_hub.return_value.connect.side_effect = AuthenticationError(
+        "Invalid credentials"
+    )
+
+    result = await hass.config_entries.flow.async_configure(
+        result["flow_id"],
+        {
+            CONF_HOST: MOCK_HOST,
+            CONF_PORT: DEFAULT_PORT,
+            CONF_SSL: False,
+            CONF_SIMPLE_NAMING: False,
+            CONF_UPDATE_FREQUENCY_SECONDS: DEFAULT_UPDATE_FREQUENCY_SECONDS,
+        },
+    )
+
+    assert result["type"] is FlowResultType.FORM
+    assert result["errors"] == {"base": "invalid_auth"}
+
+
+async def test_ssdp_flow_auth_error(
+    hass: HomeAssistant, mock_victron_hub: MagicMock
+) -> None:
+    """Test SSDP discovery flow aborts on authentication error."""
+    mock_victron_hub.return_value.connect.side_effect = AuthenticationError(
+        "Invalid credentials"
+    )
+
+    discovery_info = SsdpServiceInfo(
+        ssdp_usn="mock_usn",
+        ssdp_st="upnp:rootdevice",
+        ssdp_location="http://192.168.1.100:80/",
+        upnp={
+            "serialNumber": MOCK_SERIAL,
+            "X_VrmPortalId": MOCK_INSTALLATION_ID,
+            "modelName": MOCK_MODEL,
+            "friendlyName": MOCK_FRIENDLY_NAME,
+            "X_MqttOnLan": "1",
+            "manufacturer": "Victron Energy",
+        },
+    )
+
+    result = await hass.config_entries.flow.async_init(
+        DOMAIN,
+        context={"source": SOURCE_SSDP},
+        data=discovery_info,
+    )
+
+    assert result["type"] is FlowResultType.ABORT
+    assert result["reason"] == "invalid_auth"
+
+
+async def test_options_flow_auth_error(
+    hass: HomeAssistant, mock_victron_hub: MagicMock
+) -> None:
+    """Test options flow handles authentication errors."""
+    mock_config_entry = MockConfigEntry(
+        domain=DOMAIN,
+        unique_id=MOCK_INSTALLATION_ID,
+        data={
+            CONF_HOST: MOCK_HOST,
+            CONF_PORT: DEFAULT_PORT,
+            CONF_INSTALLATION_ID: MOCK_INSTALLATION_ID,
+            CONF_SSL: False,
+            CONF_SIMPLE_NAMING: False,
+            CONF_UPDATE_FREQUENCY_SECONDS: DEFAULT_UPDATE_FREQUENCY_SECONDS,
+        },
+    )
+    mock_config_entry.add_to_hass(hass)
+
+    result = await hass.config_entries.options.async_init(mock_config_entry.entry_id)
+
+    mock_victron_hub.return_value.connect.side_effect = AuthenticationError(
+        "Invalid credentials"
+    )
+
+    result = await hass.config_entries.options.async_configure(
+        result["flow_id"],
+        user_input={
+            CONF_HOST: "192.168.1.200",
+            CONF_PORT: 1883,
+            CONF_SSL: False,
+            CONF_SIMPLE_NAMING: False,
+            CONF_UPDATE_FREQUENCY_SECONDS: DEFAULT_UPDATE_FREQUENCY_SECONDS,
+        },
+    )
+
+    assert result["type"] is FlowResultType.FORM
+    assert result["errors"] == {"base": "invalid_auth"}

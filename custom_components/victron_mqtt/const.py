@@ -1,9 +1,11 @@
 """Constants for the victron_mqtt integration."""
+from victron_mqtt import MetricNature
+
+from homeassistant.components.sensor import SensorStateClass
 
 # Integration specific values (custom / builtin Home Assistant)
 DOMAIN = "victron_mqtt"
 DEFAULT_SIMPLE_NAMING = True
-ENTITY_PREFIX = "victron_mqtt"
 
 # generic config values
 CONF_INSTALLATION_ID = "installation_id"
@@ -32,10 +34,12 @@ ATTR_DEVICE_ID = "device_id"
 ATTR_VALUE = "value"
 
 # Not using GenericOnOff as some switches use different enums.
-# It has to be with value "On" to be on and "Off" to be off.
-SWITCH_ON = "On"
-SWITCH_OFF = "Off"
+# It has to be with id "on" to be on and "off" to be off.
+SWITCH_ON = "on"
+SWITCH_OFF = "off"
 
-# Entity IDs which needs special treatment
-ENTITIES_CATEGORY_DIAGNOSTIC = ["system_heartbeat", "solarcharger_device_off_reason"]
-ENTITIES_DISABLE_BY_DEFAULT = ["system_heartbeat", "solarcharger_device_off_reason"]
+
+METRIC_NATURE_TO_STATE_CLASS: dict[MetricNature, SensorStateClass] = {
+    MetricNature.CUMULATIVE: SensorStateClass.TOTAL_INCREASING,
+    MetricNature.INSTANTANEOUS: SensorStateClass.MEASUREMENT,
+}

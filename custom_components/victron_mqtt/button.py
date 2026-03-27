@@ -1,4 +1,4 @@
-"""Support for Victron Venus buttons."""
+"""Support for Victron GX button entities."""
 
 import logging
 from typing import Any
@@ -11,32 +11,33 @@ from victron_mqtt import (
 )
 
 from homeassistant.components.button import ButtonEntity
-from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from .const import SWITCH_ON
 from .entity import VictronBaseEntity
-from .hub import Hub
+from .hub import VictronGxConfigEntry
 
 _LOGGER = logging.getLogger(__name__)
+
+PARALLEL_UPDATES = 0  # There is no I/O in the entity itself.
 
 
 async def async_setup_entry(
     hass: HomeAssistant,
-    config_entry: ConfigEntry,
+    config_entry: VictronGxConfigEntry,
     async_add_entities: AddConfigEntryEntitiesCallback,
 ) -> None:
-    """Set up Victron Venus sensors from a config entry."""
-    hub: Hub = config_entry.runtime_data
+    """Set up Victron GX button entities from a config entry."""
+    hub = config_entry.runtime_data
 
     def on_new_metric(
         device: VictronVenusDevice,
         metric: VictronVenusMetric,
         device_info: DeviceInfo,
     ) -> None:
-        """Handle new sensor metric discovery."""
+        """Handle new button metric discovery."""
         assert isinstance(metric, VictronVenusWritableMetric)
         assert hub._hub.installation_id is not None
         async_add_entities(
@@ -55,7 +56,7 @@ async def async_setup_entry(
 
 
 class VictronButton(VictronBaseEntity, ButtonEntity):
-    """Implementation of a Victron Venus button using ButtonEntity."""
+    """Implementation of a Victron GX button entity."""
 
     def __init__(
         self,
@@ -71,11 +72,11 @@ class VictronButton(VictronBaseEntity, ButtonEntity):
         )
 
     @callback
-    def _on_update_task(self, value: Any) -> None:
+    def _on_update_cb(self, value: Any) -> None:
         pass
 
     def press(self) -> None:
         """Press the button."""
-        _LOGGER.info("Pressing button: %s", self._attr_unique_id)
         assert isinstance(self._metric, VictronVenusWritableMetric)
+        _LOGGER.debug("Pressing button: %s", self._attr_unique_id)
         self._metric.set(SWITCH_ON)

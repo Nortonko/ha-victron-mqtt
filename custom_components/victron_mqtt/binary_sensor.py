@@ -1,27 +1,24 @@
-"""Support for Victron Venus binary sensors."""
+"""Support for Victron GX binary sensors."""
 
-import logging
 from typing import Any
-from functools import cached_property
 
 from victron_mqtt import (
     Device as VictronVenusDevice,
     Metric as VictronVenusMetric,
     MetricKind,
+    VictronEnum,
 )
 
 from homeassistant.components.binary_sensor import BinarySensorEntity
-from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from .const import SWITCH_ON
 from .entity import VictronBaseEntity
-from .hub import Hub, VictronGxConfigEntry
+from .hub import VictronGxConfigEntry
 
-
-_LOGGER = logging.getLogger(__name__)
+PARALLEL_UPDATES = 0  # There is no I/O in the entity itself.
 
 
 async def async_setup_entry(
@@ -29,15 +26,15 @@ async def async_setup_entry(
     config_entry: VictronGxConfigEntry,
     async_add_entities: AddConfigEntryEntitiesCallback,
 ) -> None:
-    """Set up Victron Venus sensors from a config entry."""
-    hub: Hub = config_entry.runtime_data
+    """Set up Victron GX binary sensors from a config entry."""
+    hub = config_entry.runtime_data
 
     def on_new_metric(
         device: VictronVenusDevice,
         metric: VictronVenusMetric,
         device_info: DeviceInfo,
     ) -> None:
-        """Handle new sensor metric discovery."""
+        """Handle new binary sensor metric discovery."""
         assert hub._hub.installation_id is not None
         async_add_entities(
             [
@@ -51,7 +48,7 @@ async def async_setup_entry(
 
 
 class VictronBinarySensor(VictronBaseEntity, BinarySensorEntity):
-    """Implementation of a Victron Venus binary sensor."""
+    """Implementation of a Victron GX binary sensor."""
 
     def __init__(
         self,
@@ -62,25 +59,21 @@ class VictronBinarySensor(VictronBaseEntity, BinarySensorEntity):
         installation_id: str,
     ) -> None:
         """Initialize the binary sensor."""
-        self._attr_is_on = self._is_on(metric.value)
         super().__init__(
             device, metric, device_info, "binary_sensor", simple_naming, installation_id
         )
-
-    @staticmethod
-    def _is_on(value: Any) -> bool:
-        return str(value) == SWITCH_ON
+        self._attr_is_on = self._is_on(metric.value)
 
     @callback
-    def _on_update_task(self, value: Any) -> None:
-        new_val = self._is_on(value)
-        if self._attr_is_on == new_val:
-            return
-        self._attr_is_on = new_val
+    def _on_update_cb(self, value: Any) -> None:
+        self._attr_is_on = self._is_on(value)
         self.async_write_ha_state()
 
-    @cached_property
-    def is_on(self) -> bool:
-        """Return the current state of the binary sensor."""
-        assert self._attr_is_on is not None
-        return self._attr_is_on
+    @staticmethod
+    def _is_on(value: Any) -> bool | None:
+        """Convert a Victron switch value to a boolean."""
+        return (
+            value.id == SWITCH_ON
+            if value is not None and isinstance(value, VictronEnum)
+            else None
+        )
