@@ -40,6 +40,7 @@ SWITCH_OFF = "off"
 
 
 METRIC_NATURE_TO_STATE_CLASS: dict[MetricNature, SensorStateClass] = {
-    MetricNature.CUMULATIVE: SensorStateClass.TOTAL_INCREASING,
-    MetricNature.INSTANTANEOUS: SensorStateClass.MEASUREMENT,
+    MetricNature.MEASUREMENT: SensorStateClass.MEASUREMENT,
+    MetricNature.TOTAL: SensorStateClass.TOTAL,
+    MetricNature.TOTAL_INCREASING: SensorStateClass.TOTAL_INCREASING,
 }
