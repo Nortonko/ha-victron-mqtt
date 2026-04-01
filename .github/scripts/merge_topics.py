@@ -120,44 +120,7 @@ def main():
     with open(en_path, 'w', encoding='utf-8') as f:
         json.dump(en, f, ensure_ascii=False, indent=2, sort_keys=True)
 
-    # Update non-English locales with unit_of_measurement values from en.json.
-    # Keep localized names and states intact by touching only existing entries.
-    updated_locales = 0
-    for file_name in os.listdir(translations_dir):
-        if not file_name.endswith('.json') or file_name == 'en.json':
-            continue
-
-        locale_path = os.path.join(translations_dir, file_name)
-        with open(locale_path, encoding='utf-8') as f:
-            locale_data = json.load(f)
-
-        locale_entity = locale_data.get('entity')
-        if not isinstance(locale_entity, dict):
-            continue
-
-        locale_changed = False
-        for entity_type, entity_units in units_lookup.items():
-            locale_entries = locale_entity.get(entity_type)
-            if not isinstance(locale_entries, dict):
-                continue
-
-            for translation_key, unit in entity_units.items():
-                locale_entry = locale_entries.get(translation_key)
-                if not isinstance(locale_entry, dict):
-                    continue
-                if locale_entry.get('unit_of_measurement') == unit:
-                    continue
-
-                locale_entry['unit_of_measurement'] = unit
-                locale_changed = True
-
-        if locale_changed:
-            with open(locale_path, 'w', encoding='utf-8') as f:
-                json.dump(locale_data, f, ensure_ascii=False, indent=2, sort_keys=True)
-            updated_locales += 1
-
     print(f"Updated {count} entities")
-    print(f"Updated units in {updated_locales} locale files")
 
 if __name__ == '__main__':
     main()
