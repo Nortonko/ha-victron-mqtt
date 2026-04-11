@@ -662,6 +662,7 @@ async def test_number_set_value(
     await inject_message(victron_hub, "N/123/evcharger/0/SetCurrent", '{"value": 20.0}')
     await hass.async_block_till_done()
     state = hass.states.get(entity_id)
+    assert state is not None
     assert float(state.state) == 20.0
 
     # Set value via service

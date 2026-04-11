@@ -34,5 +34,10 @@ jobs:
           run: |
             python -m pip install --upgrade pip
             pip install pytest pytest-asyncio syrupy homeassistant pytest-homeassistant-custom-component victron_mqtt
+        - name: Log environment
+          run: |
+            python --version
+            pip show homeassistant pytest-homeassistant-custom-component syrupy victron_mqtt | grep -E "^(Name|Version)"
+            pip freeze | sort
         - name: Run tests
-          run: pytest tests/
+          run: pytest tests/ -vv
