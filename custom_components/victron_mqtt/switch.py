@@ -1,13 +1,11 @@
 """Support for Victron GX switches."""
 
-import logging
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from victron_mqtt import (
     Device as VictronVenusDevice,
     Metric as VictronVenusMetric,
     MetricKind,
-    VictronEnum,
     WritableMetric as VictronVenusWritableMetric,
 )
 
@@ -17,13 +15,11 @@ from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from .binary_sensor import VictronBinarySensor
-from .const import SWITCH_OFF, SWITCH_ON
+from .const import BINARY_SENSOR_OFF_ID, BINARY_SENSOR_ON_ID
 from .entity import VictronBaseEntity
 from .hub import VictronGxConfigEntry
 
-_LOGGER = logging.getLogger(__name__)
-
-PARALLEL_UPDATES = 0  # There is no I/O in the entity itself.
+PARALLEL_UPDATES = 0
 
 
 async def async_setup_entry(
@@ -38,10 +34,11 @@ async def async_setup_entry(
         device: VictronVenusDevice,
         metric: VictronVenusMetric,
         device_info: DeviceInfo,
+        installation_id: str,
     ) -> None:
         """Handle new switch metric discovery."""
-        assert isinstance(metric, VictronVenusWritableMetric)
-        assert hub._hub.installation_id is not None
+        if TYPE_CHECKING:
+            assert isinstance(metric, VictronVenusWritableMetric)
         async_add_entities(
             [
                 VictronSwitch(
@@ -49,7 +46,7 @@ async def async_setup_entry(
                     metric,
                     device_info,
                     hub.simple_naming,
-                    hub._hub.installation_id,
+                    installation_id,
                 )
             ]
         )
@@ -69,7 +66,6 @@ class VictronSwitch(VictronBaseEntity, SwitchEntity):
         installation_id: str,
     ) -> None:
         """Initialize the switch."""
-        self._attr_is_on = VictronBinarySensor._is_on(metric.value)  # noqa: SLF001
         super().__init__(
             device,
             metric,
@@ -78,20 +74,23 @@ class VictronSwitch(VictronBaseEntity, SwitchEntity):
             simple_naming,
             installation_id,
         )
+        self._attr_is_on = VictronBinarySensor.convert_metric_value_to_is_on(
+            metric.value
+        )
 
     @callback
     def _on_update_cb(self, value: Any) -> None:
-        self._attr_is_on = VictronBinarySensor._is_on(value)  # noqa: SLF001
+        self._attr_is_on = VictronBinarySensor.convert_metric_value_to_is_on(value)
         self.async_write_ha_state()
 
-    def turn_on(self, **kwargs: Any) -> None:
+    async def async_turn_on(self, **kwargs: Any) -> None:
         """Turn the switch on."""
-        assert isinstance(self._metric, VictronVenusWritableMetric)
-        _LOGGER.debug("Turning on switch: %s", self._attr_unique_id)
-        self._metric.set(SWITCH_ON)
+        if TYPE_CHECKING:
+            assert isinstance(self._metric, VictronVenusWritableMetric)
+        self._metric.set(BINARY_SENSOR_ON_ID)
 
-    def turn_off(self, **kwargs: Any) -> None:
+    async def async_turn_off(self, **kwargs: Any) -> None:
         """Turn the switch off."""
-        assert isinstance(self._metric, VictronVenusWritableMetric)
-        _LOGGER.debug("Turning off switch: %s", self._attr_unique_id)
-        self._metric.set(SWITCH_OFF)
+        if TYPE_CHECKING:
+            assert isinstance(self._metric, VictronVenusWritableMetric)
+        self._metric.set(BINARY_SENSOR_OFF_ID)

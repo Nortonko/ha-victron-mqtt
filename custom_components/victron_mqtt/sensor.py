@@ -8,6 +8,7 @@ from victron_mqtt import (
     FormulaMetric as VictronFormulaMetric,
     Metric as VictronVenusMetric,
     MetricKind,
+    MetricNature,
     MetricType,
     VictronEnum,
 )
@@ -21,7 +22,6 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
-from .const import METRIC_NATURE_TO_STATE_CLASS
 from .entity import VictronBaseEntity
 from .hub import VictronGxConfigEntry
 
@@ -44,6 +44,13 @@ METRIC_TYPE_TO_DEVICE_CLASS: dict[MetricType, SensorDeviceClass] = {
     MetricType.ENUM: SensorDeviceClass.ENUM,
 }
 
+METRIC_NATURE_TO_STATE_CLASS: dict[MetricNature, SensorStateClass] = {
+    MetricNature.MEASUREMENT: SensorStateClass.MEASUREMENT,
+    MetricNature.TOTAL: SensorStateClass.TOTAL,
+    MetricNature.TOTAL_INCREASING: SensorStateClass.TOTAL_INCREASING,
+}
+
+
 async def async_setup_entry(
     hass: HomeAssistant,
     config_entry: VictronGxConfigEntry,
@@ -56,9 +63,9 @@ async def async_setup_entry(
         device: VictronVenusDevice,
         metric: VictronVenusMetric,
         device_info: DeviceInfo,
+        installation_id: str,
     ) -> None:
         """Handle new sensor metric discovery."""
-        assert hub._hub.installation_id is not None
         async_add_entities(
             [
                 VictronSensor(
@@ -66,7 +73,7 @@ async def async_setup_entry(
                     metric,
                     device_info,
                     hub.simple_naming,
-                    hub._hub.installation_id,
+                    installation_id,
                 )
             ]
         )

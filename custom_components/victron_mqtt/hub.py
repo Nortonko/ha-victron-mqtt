@@ -45,9 +45,11 @@ _LOGGER = logging.getLogger(__name__)
 
 TO_REDACT = {CONF_USERNAME, CONF_PASSWORD}
 
-NewMetricCallback = Callable[[VictronVenusDevice, VictronVenusMetric, DeviceInfo], None]
-
 type VictronGxConfigEntry = ConfigEntry[Hub]
+
+NewMetricCallback = Callable[
+    [VictronVenusDevice, VictronVenusMetric, DeviceInfo, str], None
+]
 
 class Hub:
     """Victron MQTT Hub for managing communication and sensors."""
@@ -136,7 +138,7 @@ class Hub:
         device_info = Hub._map_device_info(device, hub.installation_id)
         callback = self.new_metric_callbacks.get(metric.metric_kind)
         if callback is not None:
-            callback(device, metric, device_info)
+            callback(device, metric, device_info, hub.installation_id)
 
     @staticmethod
     def _map_device_info(

@@ -1,7 +1,7 @@
 """Support for Victron GX button entities."""
 
 import logging
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from victron_mqtt import (
     Device as VictronVenusDevice,
@@ -15,7 +15,7 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
-from .const import SWITCH_ON
+from .const import BINARY_SENSOR_ON_ID
 from .entity import VictronBaseEntity
 from .hub import VictronGxConfigEntry
 
@@ -36,10 +36,11 @@ async def async_setup_entry(
         device: VictronVenusDevice,
         metric: VictronVenusMetric,
         device_info: DeviceInfo,
+        installation_id: str,
     ) -> None:
         """Handle new button metric discovery."""
-        assert isinstance(metric, VictronVenusWritableMetric)
-        assert hub._hub.installation_id is not None
+        if TYPE_CHECKING:
+            assert isinstance(metric, VictronVenusWritableMetric)
         async_add_entities(
             [
                 VictronButton(
@@ -47,7 +48,7 @@ async def async_setup_entry(
                     metric,
                     device_info,
                     hub.simple_naming,
-                    hub._hub.installation_id,
+                    installation_id,
                 )
             ]
         )
@@ -73,10 +74,12 @@ class VictronButton(VictronBaseEntity, ButtonEntity):
 
     @callback
     def _on_update_cb(self, value: Any) -> None:
+        # Buttons are stateless in HA; incoming metric updates are intentionally ignored.
         pass
 
-    def press(self) -> None:
+    async def async_press(self) -> None:
         """Press the button."""
-        assert isinstance(self._metric, VictronVenusWritableMetric)
+        if TYPE_CHECKING:
+            assert isinstance(self._metric, VictronVenusWritableMetric)
         _LOGGER.debug("Pressing button: %s", self._attr_unique_id)
-        self._metric.set(SWITCH_ON)
+        self._metric.set(BINARY_SENSOR_ON_ID)

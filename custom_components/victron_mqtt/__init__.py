@@ -19,6 +19,7 @@ _VICTRON_MQTT_LOGGER = logging.getLogger("victron_mqtt")
 PLATFORMS: list[Platform] = [
     Platform.BINARY_SENSOR,
     Platform.BUTTON,
+    Platform.DEVICE_TRACKER,
     Platform.NUMBER,
     Platform.SELECT,
     Platform.SENSOR,

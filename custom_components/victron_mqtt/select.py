@@ -1,7 +1,7 @@
 """Support for Victron GX select entities."""
 
 import logging
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from victron_mqtt import (
     Device as VictronVenusDevice,
@@ -36,10 +36,10 @@ async def async_setup_entry(
         device: VictronVenusDevice,
         metric: VictronVenusMetric,
         device_info: DeviceInfo,
+        installation_id: str,
     ) -> None:
         """Handle new select metric discovery."""
         assert isinstance(metric, VictronVenusWritableMetric)
-        assert hub._hub.installation_id is not None
         async_add_entities(
             [
                 VictronSelect(
@@ -47,7 +47,7 @@ async def async_setup_entry(
                     metric,
                     device_info,
                     hub.simple_naming,
-                    hub._hub.installation_id,
+                    installation_id,
                 )
             ]
         )
@@ -67,9 +67,10 @@ class VictronSelect(VictronBaseEntity, SelectEntity):
         installation_id: str,
     ) -> None:
         """Initialize the select entity."""
-        assert metric.enum_values is not None
+        if TYPE_CHECKING:
+            assert metric.enum_values, "Select metric will always have enum values"
         self._attr_options = metric.enum_values
-        self._attr_current_option = VictronSelect._map_value_to_state(metric.value)
+        self._attr_current_option = VictronSelect._normalize_value(metric.value)
         super().__init__(
             device,
             metric,
@@ -81,26 +82,17 @@ class VictronSelect(VictronBaseEntity, SelectEntity):
 
     @callback
     def _on_update_cb(self, value: Any) -> None:
-        self._attr_current_option = self._map_value_to_state(value)
+        self._attr_current_option = VictronSelect._normalize_value(value)
         self.async_write_ha_state()
 
-    def select_option(self, option: str) -> None:
+    async def async_select_option(self, option: str) -> None:
         """Change the selected option."""
-        assert isinstance(self._metric, VictronVenusWritableMetric)
-        assert self._metric.enum_values is not None
-        if option not in self._metric.enum_values:
-            _LOGGER.info(
-                "Setting switch %s to %s failed as option not supported. supported options are: %s",
-                self._attr_unique_id,
-                option,
-                self._metric.enum_values,
-            )
-            return
-        _LOGGER.info("Setting switch %s to %s", self._attr_unique_id, option)
-        assert isinstance(self._metric, VictronVenusWritableMetric)
+        if TYPE_CHECKING:
+            assert isinstance(self._metric, VictronVenusWritableMetric)
+        _LOGGER.debug("Setting select %s to %s", self._attr_unique_id, option)
         self._metric.set(option)
 
     @staticmethod
-    def _map_value_to_state(value: Any) -> Any:
+    def _normalize_value(value: Any) -> Any:
         """Normalize Victron enum values to their enum code."""
         return value.id if isinstance(value, VictronEnum) else value

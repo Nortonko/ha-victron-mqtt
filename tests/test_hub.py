@@ -163,7 +163,7 @@ async def test_map_device_info() -> None:
 
     assert device_info.get("identifiers") == {(DOMAIN, "12345_device_123")}
     assert device_info.get("manufacturer") == "Victron Energy"
-    assert device_info.get("name") == "Battery Monitor (ID: 288)"
+    assert device_info.get("name") == "Battery Monitor"
     assert device_info.get("model") == "BMV-712"
     assert device_info.get("serial_number") == "HQ12345678"
 

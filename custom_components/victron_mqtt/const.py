@@ -33,14 +33,6 @@ ATTR_METRIC_ID = "metric_id"
 ATTR_DEVICE_ID = "device_id"
 ATTR_VALUE = "value"
 
-# Not using GenericOnOff as some switches use different enums.
-# It has to be with id "on" to be on and "off" to be off.
-SWITCH_ON = "on"
-SWITCH_OFF = "off"
-
-
-METRIC_NATURE_TO_STATE_CLASS: dict[MetricNature, SensorStateClass] = {
-    MetricNature.MEASUREMENT: SensorStateClass.MEASUREMENT,
-    MetricNature.TOTAL: SensorStateClass.TOTAL,
-    MetricNature.TOTAL_INCREASING: SensorStateClass.TOTAL_INCREASING,
-}
+# Binary sensor enum ids must be "on" for on and "off" for off.
+BINARY_SENSOR_ON_ID = "on"
+BINARY_SENSOR_OFF_ID = "off"

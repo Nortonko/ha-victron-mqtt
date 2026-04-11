@@ -52,6 +52,11 @@ def main():
         message_type = topic.get('message_type')
         is_adjustable_suffix = topic.get('is_adjustable_suffix')
         enum_name = topic.get('enum')
+        is_main_topic = topic.get("main_topic", False)
+        is_hidden = topic.get("hidden", False)
+
+        if is_hidden:
+            continue
         
         # Extract the part after the dot and make it lower case
         if '.' in message_type:
@@ -66,9 +71,9 @@ def main():
         # Build entity entry with name and optional state for enums.
         # Only include unit_of_measurement in the translation when the metric
         # does NOT have a device_class (those get native_unit in code instead).
-        entity_entry = {"name": topic_name}
+        entity_entry = {} if is_main_topic else {"name": topic_name}
         has_device_class = topic_metric_type in DEVICE_CLASS_METRIC_TYPES
-        if topic_unit is not None and not has_device_class:
+        if topic_unit is not None and topic_unit != "%" and not has_device_class:
             entity_entry["unit_of_measurement"] = topic_unit
         if enum_name and enum_name in enum_lookup:
             entity_entry["state"] = enum_lookup[enum_name]
@@ -99,7 +104,9 @@ def main():
         sorted_entity[entity_type] = {}
         for translation_key in sorted(entity[entity_type].keys()):
             entry = entity[entity_type][translation_key]
-            sorted_entry = {"name": entry["name"]}
+            sorted_entry = {}
+            if "name" in entry:
+                sorted_entry["name"] = entry["name"]
             if "unit_of_measurement" in entry:
                 sorted_entry["unit_of_measurement"] = entry["unit_of_measurement"]
             if "state" in entry:

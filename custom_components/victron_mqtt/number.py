@@ -1,7 +1,6 @@
 """Support for Victron GX number entities."""
 
-import logging
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from victron_mqtt import (
     Device as VictronVenusDevice,
@@ -16,13 +15,10 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
-from .const import METRIC_NATURE_TO_STATE_CLASS
 from .entity import VictronBaseEntity
 from .hub import VictronGxConfigEntry
 
-_LOGGER = logging.getLogger(__name__)
-
-PARALLEL_UPDATES = 0  # There is no I/O in the entity itself.
+PARALLEL_UPDATES = 0
 
 METRIC_TYPE_TO_DEVICE_CLASS: dict[MetricType, NumberDeviceClass] = {
     MetricType.POWER: NumberDeviceClass.POWER,
@@ -51,10 +47,10 @@ async def async_setup_entry(
         device: VictronVenusDevice,
         metric: VictronVenusMetric,
         device_info: DeviceInfo,
+        installation_id: str,
     ) -> None:
         """Handle new number metric discovery."""
         assert isinstance(metric, VictronVenusWritableMetric)
-        assert hub._hub.installation_id is not None
         async_add_entities(
             [
                 VictronNumber(
@@ -62,7 +58,7 @@ async def async_setup_entry(
                     metric,
                     device_info,
                     hub.simple_naming,
-                    hub._hub.installation_id,
+                    installation_id,
                 )
             ]
         )
@@ -82,16 +78,6 @@ class VictronNumber(VictronBaseEntity, NumberEntity):
         installation_id: str,
     ) -> None:
         """Initialize the number entity."""
-        self._attr_device_class = METRIC_TYPE_TO_DEVICE_CLASS.get(metric.metric_type)
-        self._attr_state_class = METRIC_NATURE_TO_STATE_CLASS.get(metric.metric_nature)
-        self._attr_native_unit_of_measurement = metric.unit_of_measurement
-        self._attr_native_value = metric.value
-        if isinstance(metric.min_value, int | float):
-            self._attr_native_min_value = metric.min_value
-        if isinstance(metric.max_value, int | float):
-            self._attr_native_max_value = metric.max_value
-        if isinstance(metric.step, int | float):
-            self._attr_native_step = metric.step
         super().__init__(
             device,
             metric,
@@ -100,14 +86,24 @@ class VictronNumber(VictronBaseEntity, NumberEntity):
             simple_naming,
             installation_id,
         )
+        self._attr_device_class = METRIC_TYPE_TO_DEVICE_CLASS.get(metric.metric_type)
+        if self._attr_device_class is not None:
+            self._attr_native_unit_of_measurement = metric.unit_of_measurement
+        self._attr_native_value = metric.value
+        if metric.min_value is not None:
+            self._attr_native_min_value = metric.min_value
+        if metric.max_value is not None:
+            self._attr_native_max_value = metric.max_value
+        if metric.step is not None:
+            self._attr_native_step = metric.step
 
     @callback
     def _on_update_cb(self, value: Any) -> None:
         self._attr_native_value = value
         self.async_write_ha_state()
 
-    def set_native_value(self, value: float) -> None:
+    async def async_set_native_value(self, value: float) -> None:
         """Set a new value."""
-        assert isinstance(self._metric, VictronVenusWritableMetric)
-        _LOGGER.debug("Setting number %s to %s", self._attr_unique_id, value)
+        if TYPE_CHECKING:
+            assert isinstance(self._metric, VictronVenusWritableMetric)
         self._metric.set(value)
