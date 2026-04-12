@@ -438,6 +438,67 @@ async def test_time(
     assert len(entities) == 1
     assert entities == snapshot
 
+
+async def test_device_tracker(
+    hass: HomeAssistant,
+    snapshot: SnapshotAssertion,
+    init_integration,
+) -> None:
+    """Test device tracker entity creation from GPS location."""
+    victron_hub, mock_config_entry = init_integration
+
+    # Inject GPS coordinates (latitude and longitude)
+    await inject_message(victron_hub, "N/123/gps/0/Position/Latitude", '{"value": 52.3676}')
+    await inject_message(victron_hub, "N/123/gps/0/Position/Longitude", '{"value": 4.9041}')
+    await finalize_injection(victron_hub)
+
+    # Verify entity was created by checking entity registry
+    entity_registry = er.async_get(hass)
+    entities = er.async_entries_for_config_entry(
+        entity_registry, mock_config_entry.entry_id
+    )
+
+    # Should have created one entity
+    assert len(entities) == 1
+    assert entities == snapshot
+
+
+async def test_device_tracker_update(
+    hass: HomeAssistant,
+    init_integration,
+) -> None:
+    """Test device tracker state updates via MQTT (_on_update_cb)."""
+    victron_hub, mock_config_entry = init_integration
+
+    await inject_message(victron_hub, "N/123/gps/0/Position/Latitude", '{"value": 52.3676}')
+    await inject_message(victron_hub, "N/123/gps/0/Position/Longitude", '{"value": 4.9041}')
+    await finalize_injection(victron_hub, disconnect=False)
+    await hass.async_block_till_done()
+
+    entity_registry = er.async_get(hass)
+    entities = er.async_entries_for_config_entry(
+        entity_registry, mock_config_entry.entry_id
+    )
+    tracker_entities = [e for e in entities if "device_tracker." in e.entity_id]
+    assert len(tracker_entities) > 0
+    entity_id = tracker_entities[0].entity_id
+
+    state = hass.states.get(entity_id)
+    assert state is not None
+    assert float(state.attributes["latitude"]) == 52.3676
+    assert float(state.attributes["longitude"]) == 4.9041
+
+    # Update via MQTT - triggers _on_update_cb with new coordinates
+    await inject_message(victron_hub, "N/123/gps/0/Position/Latitude", '{"value": 48.8566}')
+    await inject_message(victron_hub, "N/123/gps/0/Position/Longitude", '{"value": 2.3522}')
+    await hass.async_block_till_done()
+
+    state = hass.states.get(entity_id)
+    assert state is not None
+    assert float(state.attributes["latitude"]) == 48.8566
+    assert float(state.attributes["longitude"]) == 2.3522
+
+
 @patch('victron_mqtt.formula_common.time.monotonic')
 async def test_sensor_with_baseline(
     mock_time: MagicMock,
@@ -935,3 +996,5 @@ async def test_number_with_step(
     assert state is not None
     assert float(state.state) == 57.6
     assert state.attributes.get("step") == 0.1
+
+
