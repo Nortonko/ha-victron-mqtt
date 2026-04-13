@@ -373,6 +373,28 @@ async def test_select(
     assert entities == snapshot
 
 
+async def test_select_main_topic(
+    hass: HomeAssistant,
+    snapshot: SnapshotAssertion,
+    init_integration,
+) -> None:
+    """Test select entity with main_topic=True still gets translation_key."""
+    victron_hub, mock_config_entry = init_integration
+
+    # Inject a select metric where main_topic=True (vebus inverter mode)
+    await inject_message(victron_hub, "N/123/vebus/289/Mode", '{"value": 3}')
+    await finalize_injection(victron_hub)
+
+    entity_registry = er.async_get(hass)
+    entities = er.async_entries_for_config_entry(
+        entity_registry, mock_config_entry.entry_id
+    )
+
+    # Should have created one entity
+    assert len(entities) == 1
+    assert entities == snapshot
+
+
 async def test_button(
     hass: HomeAssistant,
     snapshot: SnapshotAssertion,

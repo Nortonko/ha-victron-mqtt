@@ -411,6 +411,98 @@
     }),
   ])
 # ---
+# name: test_select_main_topic[complex_naming]
+  list([
+    EntityRegistryEntrySnapshot({
+      'aliases': list([
+        None,
+      ]),
+      'area_id': None,
+      'capabilities': dict({
+        'options': list([
+          'charger_only',
+          'inverter_only',
+          'on',
+          'off',
+        ]),
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'select',
+      'entity_category': None,
+      'entity_id': 'select.victron_mqtt_123_vebus_289_vebus_inverter_mode',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'object_id_base': None,
+      'options': dict({
+      }),
+      'original_device_class': None,
+      'original_icon': None,
+      'original_name': None,
+      'platform': 'victron_mqtt',
+      'previous_unique_id': None,
+      'suggested_object_id': 'victron_mqtt_123_vebus_289_vebus_inverter_mode',
+      'supported_features': 0,
+      'translation_key': 'vebus_inverter_mode',
+      'unique_id': 'select.victron_mqtt_123_vebus_289_vebus_inverter_mode',
+      'unit_of_measurement': None,
+    }),
+  ])
+# ---
+# name: test_select_main_topic[simple_naming]
+  list([
+    EntityRegistryEntrySnapshot({
+      'aliases': list([
+        None,
+      ]),
+      'area_id': None,
+      'capabilities': dict({
+        'options': list([
+          'charger_only',
+          'inverter_only',
+          'on',
+          'off',
+        ]),
+      }),
+      'config_entry_id': <ANY>,
+      'config_subentry_id': <ANY>,
+      'device_class': None,
+      'device_id': <ANY>,
+      'disabled_by': None,
+      'domain': 'select',
+      'entity_category': None,
+      'entity_id': 'select.ve_bus_id_289',
+      'has_entity_name': True,
+      'hidden_by': None,
+      'icon': None,
+      'id': <ANY>,
+      'labels': set({
+      }),
+      'name': None,
+      'object_id_base': None,
+      'options': dict({
+      }),
+      'original_device_class': None,
+      'original_icon': None,
+      'original_name': None,
+      'platform': 'victron_mqtt',
+      'previous_unique_id': None,
+      'suggested_object_id': None,
+      'supported_features': 0,
+      'translation_key': 'vebus_inverter_mode',
+      'unique_id': 'select.victron_mqtt_vebus_289_vebus_inverter_mode',
+      'unit_of_measurement': None,
+    }),
+  ])
+# ---
 # name: test_sensor[complex_naming]
   list([
     EntityRegistryEntrySnapshot({
