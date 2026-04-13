@@ -447,9 +447,13 @@ async def test_device_tracker(
     """Test device tracker entity creation from GPS location."""
     victron_hub, mock_config_entry = init_integration
 
-    # Inject GPS coordinates (latitude and longitude)
+    # Inject all GPS metrics required by the gps_location formula
     await inject_message(victron_hub, "N/123/gps/0/Position/Latitude", '{"value": 52.3676}')
     await inject_message(victron_hub, "N/123/gps/0/Position/Longitude", '{"value": 4.9041}')
+    await inject_message(victron_hub, "N/123/gps/0/Fix", '{"value": 1}')
+    await inject_message(victron_hub, "N/123/gps/0/Altitude", '{"value": 10.0}')
+    await inject_message(victron_hub, "N/123/gps/0/Course", '{"value": 0.0}')
+    await inject_message(victron_hub, "N/123/gps/0/Speed", '{"value": 0.0}')
     await finalize_injection(victron_hub)
 
     # Verify entity was created by checking entity registry
@@ -472,6 +476,10 @@ async def test_device_tracker_update(
 
     await inject_message(victron_hub, "N/123/gps/0/Position/Latitude", '{"value": 52.3676}')
     await inject_message(victron_hub, "N/123/gps/0/Position/Longitude", '{"value": 4.9041}')
+    await inject_message(victron_hub, "N/123/gps/0/Fix", '{"value": 1}')
+    await inject_message(victron_hub, "N/123/gps/0/Altitude", '{"value": 10.0}')
+    await inject_message(victron_hub, "N/123/gps/0/Course", '{"value": 0.0}')
+    await inject_message(victron_hub, "N/123/gps/0/Speed", '{"value": 0.0}')
     await finalize_injection(victron_hub, disconnect=False)
     await hass.async_block_till_done()
 
