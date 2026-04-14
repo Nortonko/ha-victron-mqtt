@@ -28,17 +28,21 @@ def main():
     # These get native_unit_of_measurement set in code, so the translation
     # file must NOT carry unit_of_measurement for them.
     DEVICE_CLASS_METRIC_TYPES = {
-        'MetricType.POWER',
-        'MetricType.APPARENT_POWER',
-        'MetricType.ENERGY',
-        'MetricType.VOLTAGE',
-        'MetricType.CURRENT',
-        'MetricType.FREQUENCY',
-        'MetricType.ELECTRIC_STORAGE_PERCENTAGE',
-        'MetricType.TEMPERATURE',
-        'MetricType.SPEED',
-        'MetricType.LIQUID_VOLUME',
-        'MetricType.DURATION',
+        "MetricType.POWER",
+        "MetricType.APPARENT_POWER",
+        "MetricType.ENERGY",
+        "MetricType.VOLTAGE",
+        "MetricType.CURRENT",
+        "MetricType.FREQUENCY",
+        "MetricType.ELECTRIC_STORAGE_PERCENTAGE",
+        "MetricType.TEMPERATURE",
+        "MetricType.HUMIDITY",
+        "MetricType.PRESSURE",
+        "MetricType.DISTANCE",
+        "MetricType.POWER_FACTOR",
+        "MetricType.SPEED",
+        "MetricType.LIQUID_VOLUME",
+        "MetricType.DURATION",
     }
 
     # Update topics: add or update entries in en.json under entity.sensor for each topic id
