@@ -144,5 +144,5 @@ async def async_remove_config_entry_device(
     config_entry: VictronGxConfigEntry,
     device_entry: dr.DeviceEntry,
 ) -> bool:
-    """Remove a device from the config entry."""
+    """Always allow removing a device from the config entry. Worse case it will be re-created on the next restart if it still exists in the hub."""
     return True
