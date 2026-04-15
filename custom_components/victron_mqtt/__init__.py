@@ -6,6 +6,7 @@ import logging
 
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP, Platform
 from homeassistant.core import Event, HomeAssistant, ServiceCall
+from homeassistant.helpers import device_registry as dr, entity_registry as er
 from homeassistant.helpers.typing import ConfigType
 from homeassistant.exceptions import HomeAssistantError
 
@@ -136,4 +137,12 @@ async def async_unload_entry(hass: HomeAssistant, entry: VictronGxConfigEntry) -
     await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
     hub.unregister_all_new_metric_callbacks()
 
+    return True
+
+async def async_remove_config_entry_device(
+    hass: HomeAssistant,
+    config_entry: VictronGxConfigEntry,
+    device_entry: dr.DeviceEntry,
+) -> bool:
+    """Remove a device from the config entry."""
     return True
