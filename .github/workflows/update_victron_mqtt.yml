@@ -62,23 +62,6 @@ jobs:
           # Pin local/dev test dependency.
           sed -i -E "s|^victron_mqtt(==[0-9][0-9A-Za-z.\-]*)?$|victron_mqtt==$latest|" requirements.txt
 
-          # Ensure CI test job installs the same victron_mqtt version.
-          python3 - <<'PY'
-          from pathlib import Path
-          import re
-
-          latest = "${{ steps.get_release.outputs.latest_version }}"
-          workflow = Path(".github/workflows/validate.yaml")
-          text = workflow.read_text(encoding="utf-8")
-
-          pattern = re.compile(r"(pip install [^\n]*?)victron_mqtt(?:==[^\s]+)?", re.MULTILINE)
-          updated_text, count = pattern.subn(rf"\1victron_mqtt=={latest}", text, count=1)
-          if count != 1:
-              raise RuntimeError("Could not update victron_mqtt pin in .github/workflows/validate.yaml")
-
-          workflow.write_text(updated_text, encoding="utf-8")
-          PY
-
       - name: Download victron_mqtt release package from PyPI
         if: steps.check_update.outputs.update_needed == 'true'
         run: |
