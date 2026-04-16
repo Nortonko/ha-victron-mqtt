@@ -104,7 +104,7 @@
         "name": "État du relais du chargeur solaire"
       },
       "switch_output_state": {
-        "name": "État de la sortie du commutateur {output}"
+        "name": "État"
       },
       "system_dynamicess_active": {
         "name": "Dynamic ESS actif"
@@ -191,7 +191,7 @@
         "unit_of_measurement": "factor"
       },
       "switch_output_dimming": {
-        "name": "Gradation de la sortie du commutateur {output}",
+        "name": "Gradation",
         "unit_of_measurement": "%"
       },
       "system_ac_export_limit": {
@@ -764,7 +764,7 @@
         "name": "Nom personnalisé de la sortie du commutateur {output}"
       },
       "switch_output_dimming": {
-        "name": "Gradation de la sortie du commutateur {output}",
+        "name": "Gradation",
         "unit_of_measurement": "%"
       },
       "system_ac_active_input_source": {
@@ -1120,7 +1120,7 @@
         "name": "État du relais du chargeur solaire"
       },
       "switch_output_state": {
-        "name": "État de la sortie du commutateur {output}"
+        "name": "État"
       },
       "system_relay_relay": {
         "name": "État du relais {relay}"

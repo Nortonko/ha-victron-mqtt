@@ -101,7 +101,7 @@
         "name": "Solar-Laderegler Relaiszustand"
       },
       "switch_output_state": {
-        "name": "Ausgang {output} Zustand"
+        "name": "Zustand"
       },
       "system_dynamicess_active": {
         "name": "Dynamisches ESS aktiv"
@@ -188,7 +188,7 @@
         "unit_of_measurement": "factor"
       },
       "switch_output_dimming": {
-        "name": "Ausgang {output} Dimmung",
+        "name": "Dimmung",
         "unit_of_measurement": "%"
       },
       "system_ac_export_limit": {
@@ -722,7 +722,7 @@
         "name": "Ausgang {output} Benutzerdefinierter Name"
       },
       "switch_output_dimming": {
-        "name": "Ausgang {output} Dimmung",
+        "name": "Dimmung",
         "unit_of_measurement": "%"
       },
       "system_ac_active_input_source": {
@@ -1051,7 +1051,7 @@
         "name": "Solar-Laderegler Relaiszustand"
       },
       "switch_output_state": {
-        "name": "Ausgang {output} Zustand"
+        "name": "Zustand"
       },
       "system_relay_relay": {
         "name": "Relais {relay} Zustand"

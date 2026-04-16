@@ -228,7 +228,7 @@
         }
       },
       "switch_output_state": {
-        "name": "Stav prepínača {output}",
+        "name": "Stav",
         "state": {
           "off": "Vypnuté",
           "on": "Zapnuté"
@@ -409,7 +409,7 @@
         "unit_of_measurement": "factor"
       },
       "switch_output_dimming": {
-        "name": "Stmievanie {output}",
+        "name": "Stmievanie",
         "unit_of_measurement": "%"
       },
       "system_ac_export_limit": {
@@ -1666,7 +1666,7 @@
         "name": "Vlastný názov {output}"
       },
       "switch_output_dimming": {
-        "name": "Stmievanie {output}",
+        "name": "Stmievanie",
         "unit_of_measurement": "%"
       },
       "switchable_output_output_custom_name": {
@@ -2391,7 +2391,7 @@
         }
       },
       "switch_output_state": {
-        "name": "Stav prepínača {output}",
+        "name": "Stav",
         "state": {
           "off": "Vypnuté",
           "on": "Zapnuté"

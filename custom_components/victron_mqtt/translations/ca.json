@@ -101,7 +101,7 @@
         "name": "Estat del relé del carregador solar"
       },
       "switch_output_state": {
-        "name": "Estat de la sortida {output}"
+        "name": "Estat"
       },
       "system_dynamicess_active": {
         "name": "ESS dinàmic actiu"
@@ -188,7 +188,7 @@
         "unit_of_measurement": "factor"
       },
       "switch_output_dimming": {
-        "name": "Regulació de la sortida {output}",
+        "name": "Regulació",
         "unit_of_measurement": "%"
       },
       "system_ac_export_limit": {
@@ -722,7 +722,7 @@
         "name": "Nom personalitzat de la sortida {output}"
       },
       "switch_output_dimming": {
-        "name": "Regulació de la sortida {output}",
+        "name": "Regulació",
         "unit_of_measurement": "%"
       },
       "system_ac_active_input_source": {
@@ -1048,7 +1048,7 @@
         "name": "Estat del relé del carregador solar"
       },
       "switch_output_state": {
-        "name": "Estat de la sortida {output}"
+        "name": "Estat"
       },
       "system_relay_relay": {
         "name": "Estat del relé {relay}"
